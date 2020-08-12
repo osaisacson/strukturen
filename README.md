@@ -26,3 +26,4 @@ Then...
 - in firebase, go to project settings and find your project details. Update the account details in env.js
 - delete all specific firebase files in root, these will be generated in the next step
 - `firebase init` - select installing all options. Follow all defaults apart for functions, do not overwrite these.
+- In firebase project settings download the google-services.json file from your apps/android and the GoogleService-Info.plist from your apps/iOS, add these to the root of your project

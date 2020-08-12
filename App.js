@@ -11,7 +11,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
 import 'firebase/database';
-import env from './env';
+import env from './env.js';
 import AppNavigator from './navigation/AppNavigator';
 import checkExpiredToken from './store/middlewares/checkExpiredToken';
 import authReducer from './store/reducers/auth';
