@@ -90,7 +90,7 @@ const AddProfileScreen = (props) => {
     } catch (err) {
       setError(err.message);
     }
-    props.navigation.navigate('Kretsloppan');
+    props.navigation.navigate('Strukturen');
     setIsLoading(false);
   }, [dispatch, currentProfile, formState]);
 

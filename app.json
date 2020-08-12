@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Kretsloppan",
-    "slug": "kretsloppan",
+    "name": "strukturen",
+    "slug": "strukturen",
     "privacy": "public",
-    "description": "Återbruksappen 'Kretsloppan' är ett verktyg för att synliggöra och öka användandet av återbruk. Den riktar sig mot alla intressenter - från organisationer till individer. Förutom att se tillgängligt återbruk kan man via appen också lägga upp sitt projekt och följa återbrukets resa från ett hem till ett annat.",
+    "description": "Strukturen är ett verktyg för att strukturera upp sina dagliga mönster.",
     "sdkVersion": "36.0.0",
     "platforms": ["ios", "android", "web"],
-    "version": "1.0.5",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,18 +19,18 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.egnahemsfabriken.kretsloppan",
-      "buildNumber": "1.0.5",
+      "bundleIdentifier": "com.egnahemsfabriken.strukturen",
+      "buildNumber": "1.0.0",
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
-        "NSCameraUsageDescription": "Kretsloppan ber om åtkomst till din kamera så du kan ta och lägga upp bilder till dina poster i appen.",
-        "NSPhotoLibraryUsageDescription": "Kretsloppan ber om åtkomst till ditt kameragalleri så du kan välja bland och lägga upp bilder till dina poster i appen.",
-        "NSPhotoLibraryAddUsageDescription": "Kretsloppan ber om åtkomst till ditt kameragalleri så du kan ladda upp bilder till dina poster i appen."
+        "NSCameraUsageDescription": "strukturen ber om åtkomst till din kamera så du kan ta och lägga upp bilder till dina poster i appen.",
+        "NSPhotoLibraryUsageDescription": "strukturen ber om åtkomst till ditt kameragalleri så du kan välja bland och lägga upp bilder till dina poster i appen.",
+        "NSPhotoLibraryAddUsageDescription": "strukturen ber om åtkomst till ditt kameragalleri så du kan ladda upp bilder till dina poster i appen."
       }
     },
     "android": {
-      "package": "com.egnahemsfabriken.kretsloppan",
-      "versionCode": 5,
+      "package": "com.egnahemsfabriken.strukturen",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#ffffff"

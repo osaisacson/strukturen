@@ -34,12 +34,12 @@ import {
 const SpotlightStackNavigator = createStackNavigator();
 
 export const SpotlightNavigator = ({ navigation }) => {
-  usePopToTopOnBlur(navigation, 'Kretsloppan');
+  usePopToTopOnBlur(navigation, 'Strukturen');
 
   return (
     <SpotlightStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <SpotlightStackNavigator.Screen
-        name="Kretsloppan"
+        name="Strukturen"
         component={SpotlightProductsScreen}
         options={defaultMainPageOptions}
       />

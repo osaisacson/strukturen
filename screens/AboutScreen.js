@@ -24,12 +24,10 @@ const AboutScreen = () => {
         </Animatable.View>
 
         <Paragraph style={{ ...styles.paragraph, textAlign: 'center' }}>
-          Kretsloppan är skapad 2020 av Egnahemsfabriken och Orust Kretsloppsakademi med stöd av
-          Vinnova - Sveriges Innovationsmyndighet.
+          Strukturen är skapad 2020 av Ratatosk med stöd av en vilja av schtål.
         </Paragraph>
         <Paragraph style={{ ...styles.paragraph, textAlign: 'center' }}>
-          Målet är att synliggöra och främja användandet av återbruk, och att skapa en mötesplats
-          där vi som bygger hållbart lätt kan dela resurser.
+          Målet är att samla lärdomar från Monkey Mindset.
         </Paragraph>
         <SectionCard style={styles.sectionContainer}>
           <View style={styles.headerContainer}>

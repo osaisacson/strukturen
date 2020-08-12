@@ -128,7 +128,7 @@ const ProposalsStack = ({ navigation }) => {
 export const TabNavigator = ({ navigation }) => {
   return (
     <TabStackNavigator.Navigator
-      initialRouteName="Kretsloppan"
+      initialRouteName="Strukturen"
       labeled
       shifting
       activeColor={Colors.lightPrimary}
@@ -136,7 +136,7 @@ export const TabNavigator = ({ navigation }) => {
       barStyle={{ backgroundColor: Colors.darkPrimary }}>
       <TabStackNavigator.Screen
         unmountOnBlur
-        name="Kretsloppan"
+        name="Strukturen"
         component={SpotlightNavigator}
         options={{
           unmountOnBlur: true,

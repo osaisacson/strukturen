@@ -1,6 +1,28 @@
-<p align="left">
-  <img src="https://user-images.githubusercontent.com/3785147/90018981-11d7d880-dcae-11ea-82ee-d01a7449581e.jpg" width="190" title="kretsloppan">
-</p>
+# strukturen
 
-# kretsloppan
-iOS/Android app supporting sustainable reuse of building materials
+iOS/Android app for structuring life
+
+## get started
+
+Make sure you first have installed:
+
+- XCode
+- Android Studio
+- NPM
+- Expo CLI
+
+Then...
+`git clone https://github.com/osaisacson/strukturen.git`
+`git init`
+`npm install`
+`npm start`
+...and start apple and android simulators
+
+## when using as a template
+
+- clone the project
+- create a new firebase db: https://console.firebase.google.com/
+- change the name of example-env in the root of your project to env.js and (IMPORTANT) include it in your gitignore file.
+- in firebase, go to project settings and find your project details. Update the account details in env.js
+- delete all specific firebase files in root, these will be generated in the next step
+- `firebase init` - select installing all options. Follow all defaults apart for functions, do not overwrite these.

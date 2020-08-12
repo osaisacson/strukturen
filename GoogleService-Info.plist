@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>931878595083-motkjtftfhjq0vqh6ptvobvjkf1tj47i.apps.googleusercontent.com</string>
+	<string>752645482397-vqof1ct189rji5ffshh8u19pqdmg6km4.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.931878595083-motkjtftfhjq0vqh6ptvobvjkf1tj47i</string>
+	<string>com.googleusercontent.apps.752645482397-vqof1ct189rji5ffshh8u19pqdmg6km4</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCDoSKz37dzpNMqfPNFr4m-zDTr0dpzc_g</string>
+	<string>AIzaSyAnbcPDjrSX-adRz4V8j0T6gGBHYxlbPtc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>931878595083</string>
+	<string>752645482397</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.egnahemsfabriken.kretsloppan</string>
+	<string>com.egnahemsfabriken.strukturen</string>
 	<key>PROJECT_ID</key>
-	<string>kretsloppan</string>
+	<string>strukturen-5c143</string>
 	<key>STORAGE_BUCKET</key>
-	<string>egnahemsfabriken.appspot.com</string>
+	<string>strukturen-5c143.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:931878595083:ios:09bd432e846025b22b350e</string>
+	<string>1:752645482397:ios:f1aa468539c3e5a8e67174</string>
 	<key>DATABASE_URL</key>
-	<string>https://egnahemsfabriken.firebaseio.com</string>
+	<string>https://strukturen-5c143.firebaseio.com</string>
 </dict>
 </plist>
