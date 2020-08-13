@@ -4,7 +4,7 @@ import { ScrollView, View } from 'react-native';
 import Goal from '../UI/Goal';
 import Styles from './../../constants/Styles';
 
-const HorizontalScroll = ({ scrollData, renderedItemType, navigation }) => {
+const HorizontalScroll = ({ scrollData, getData, renderedItemType, navigation }) => {
   //Set defaults
   let RenderedComponent;
   let scrollHeight;
@@ -43,6 +43,7 @@ const HorizontalScroll = ({ scrollData, renderedItemType, navigation }) => {
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {scrollData.map((item) => (
                   <RenderedComponent
+                    getData={getData}
                     navigation={navigation}
                     itemData={item}
                     key={item.id}

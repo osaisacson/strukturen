@@ -1,12 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import Styles from '../../constants/Styles';
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
-import Styles from '../../constants/Styles';
 
-const Goal = ({ navigation, itemData }) => {
+const Goal = ({ navigation, itemData, getData }) => {
   const onSelect = () => navigation.navigate('EditGoal');
+
+  const handleTextChange = (text) => {
+    setShownText(text);
+  };
+
+  const sendData = (text) => {
+    getData(text);
+  };
 
   const { title, text } = itemData;
 
@@ -14,9 +22,8 @@ const Goal = ({ navigation, itemData }) => {
     <View style={styles.container}>
       <Card style={styles.goal}>
         <View style={styles.touchable}>
-          <TouchableCmp onPress={onSelect} useForeground>
-            {title ? <Text>{title}</Text> : null}
-            {text ? <Text>{text}</Text> : null}
+          <TouchableCmp onPress={sendData(text)} useForeground>
+            {title ? <Text style={{ fontFamily: Styles.defaultFontFamily }}>{title}</Text> : null}
           </TouchableCmp>
         </View>
       </Card>

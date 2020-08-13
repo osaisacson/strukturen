@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { IconButton, Text } from 'react-native-paper';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,8 @@ const HomeScreen = (props) => {
     state.profiles.allProfiles.find((profile) => profile.profileId === loggedInUserId)
   );
 
+  const [text, setText] = useState('');
+
   //Gets all goals
   const availableGoals = useSelector((state) => state.goals.availableGoals);
 
@@ -25,6 +27,11 @@ const HomeScreen = (props) => {
   //Navigate to the edit screen and forward the goal id
   const editProfileHandler = () => {
     props.navigation.navigate('EditProfile', { detailId: currentProfile.id });
+  };
+
+  const getData = (val) => {
+    console.log(val);
+    setText(val);
   };
 
   return (
@@ -58,7 +65,7 @@ const HomeScreen = (props) => {
           AM
         </Text>
       </Card>
-      <HorizontalScroll scrollData={userGoals} renderedItemType="goals" />
+      <HorizontalScroll getData={getData} scrollData={userGoals} renderedItemType="goals" />
       <Card
         style={{
           position: 'absolute',
@@ -80,6 +87,7 @@ const HomeScreen = (props) => {
         </Text>
       </Card>
       <IconButton icon="settings" color={Colors.primary} size={20} onPress={editProfileHandler} />
+      <Text style={{ marginTop: 100, padding: 10 }}>{text}</Text>
     </View>
   );
 };
