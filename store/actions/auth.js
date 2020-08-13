@@ -22,17 +22,7 @@ const userCredentialsToJson = (credentials) => credentials.user.toJSON();
 const withFirebaseAuthPersistence = (callbackFn) =>
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(callbackFn);
 
-export const signup = (
-  email,
-  password,
-  profileName,
-  profileDescription,
-  phone,
-  address,
-  location,
-  defaultPickupDetails,
-  image
-) => {
+export const signup = (email, password, profileName) => {
   return async (dispatch) => {
     try {
       const authData = await withFirebaseAuthPersistence(() =>
@@ -52,28 +42,12 @@ export const signup = (
       console.log('store/actions/auth: attempting to create a profile with this data:', authData);
       console.log({
         profileName,
-        profileDescription,
         email,
-        phone,
-        address,
-        location,
-        defaultPickupDetails,
       });
 
       try {
         console.log('Attempting to create profile');
-        await dispatch(
-          profilesActions.createProfile(
-            profileName,
-            profileDescription,
-            email,
-            phone,
-            address,
-            location,
-            defaultPickupDetails,
-            image
-          )
-        );
+        await dispatch(profilesActions.createProfile(profileName, email));
       } catch (err) {
         console.log(
           'store/actions/auth: Something went wrong when trying to create profile: ',

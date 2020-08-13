@@ -18,7 +18,7 @@ import ProductDetailScreen from '../screens/details/ProductDetailScreen';
 import ProjectDetailScreen from '../screens/details/ProjectDetailScreen';
 import ProposalDetailScreen from '../screens/details/ProposalDetailScreen';
 import ProductsScreen from '../screens/shop/ProductsScreen';
-import SpotlightProductsScreen from '../screens/shop/SpotlightProductsScreen';
+import HomeScreen from '../screens/shop/HomeScreen';
 import UserProductsScreen from '../screens/user/UserProductsScreen';
 import UserProfile from '../screens/user/UserProfile';
 import UserProposalsScreen from '../screens/user/UserProposalsScreen';
@@ -40,7 +40,7 @@ export const SpotlightNavigator = ({ navigation }) => {
     <SpotlightStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <SpotlightStackNavigator.Screen
         name="Strukturen"
-        component={SpotlightProductsScreen}
+        component={HomeScreen}
         options={defaultMainPageOptions}
       />
       <SpotlightStackNavigator.Screen name="Återbruk" component={ProductsScreen} />

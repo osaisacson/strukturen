@@ -90,9 +90,6 @@ const UserProfile = (props) => {
             {currentProfile.location}
           </Title>
         ) : null}
-        {currentProfile.profileDescription ? (
-          <Title style={userProfileStyles.subtitle}>{currentProfile.profileDescription}</Title>
-        ) : null}
 
         <View style={userProfileStyles.row}>
           <View style={userProfileStyles.section}>

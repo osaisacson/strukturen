@@ -4,13 +4,10 @@ import { Avatar, Title, Caption, Paragraph } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 import ButtonIcon from '../../components/UI/ButtonIcon';
+import ScrollViewToTop from '../../components/wrappers/ScrollViewToTop';
 import Colors from '../../constants/Colors';
-import ScrollViewToTop from './../../components/wrappers/ScrollViewToTop';
-import UserActions from './UserActions';
-import UserItems from './UserItems';
-import { userProfileStyles } from './UserProfile';
 
-const UserSpotlightScreen = (props) => {
+const HomeScreen = (props) => {
   //TBD: Find a better solution for this. Currently the user object does not update if we don't pull in all profiles
   const currentProfileForId = useSelector((state) => state.profiles.userProfile || {});
   const loggedInUserId = currentProfileForId.profileId;
@@ -74,12 +71,6 @@ const UserSpotlightScreen = (props) => {
     return a > b ? -1 : a < b ? 1 : 0;
   });
 
-  //Sets indicator numbers
-  const added = userProducts.length;
-  const collected = collectedByUser.length;
-  const sold = givenByUser.length;
-  const nrOfProjects = userProjects.length;
-
   //Navigate to the edit screen and forward the product id
   const editProfileHandler = () => {
     props.navigation.navigate('EditProfile', { detailId: currentProfile.id });
@@ -87,9 +78,14 @@ const UserSpotlightScreen = (props) => {
 
   return (
     <>
-      <UserActions navigation={props.navigation} />
       <ScrollViewToTop>
-        <View style={userProfileStyles.userInfoSection}>
+        <View
+          style={{
+            paddingTop: 10,
+            textAlign: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <Image
             source={require('./../../assets/userBackground.png')}
             style={{
@@ -102,75 +98,16 @@ const UserSpotlightScreen = (props) => {
               height: '105%',
             }}
           />
-          <Avatar.Image
-            style={{
-              marginTop: 5,
-              color: '#fff',
-              backgroundColor: '#fff',
-              borderWidth: 0.3,
-              borderColor: '#000',
-            }}
-            source={
-              currentProfile && currentProfile.image
-                ? { uri: currentProfile.image }
-                : require('./../../assets/avatar-placeholder-image.png')
-            }
-            size={80}
-          />
+
           <ButtonIcon icon="settings" color={Colors.neutral} onSelect={editProfileHandler} />
 
-          <Title style={{ color: '#fff', ...userProfileStyles.title }}>
+          <Title style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center', marginTop: -6 }}>
             {currentProfile.profileName}
           </Title>
-          {currentProfile.location ? (
-            <Title
-              style={{
-                color: '#fff',
-                fontFamily: 'roboto-bold-italic',
-                ...userProfileStyles.subtitle,
-              }}>
-              {currentProfile.location}
-            </Title>
-          ) : null}
-
-          <View style={userProfileStyles.row}>
-            <View style={userProfileStyles.section}>
-              <Paragraph style={{ color: '#fff', ...userProfileStyles.paragraph }}>
-                {added ? added : 0}
-              </Paragraph>
-              <Caption style={{ color: '#fff' }}>Upplagda</Caption>
-            </View>
-            <View style={userProfileStyles.section}>
-              <Paragraph style={{ color: '#fff', ...userProfileStyles.paragraph }}>
-                {collected ? collected : 0}
-              </Paragraph>
-              <Caption style={{ color: '#fff' }}>Köpta</Caption>
-            </View>
-            <View style={userProfileStyles.section}>
-              <Paragraph style={{ color: '#fff', ...userProfileStyles.paragraph }}>
-                {sold ? sold : 0}
-              </Paragraph>
-              <Caption style={{ color: '#fff' }}>Sålda</Caption>
-            </View>
-            <View style={userProfileStyles.section}>
-              <Paragraph style={{ color: '#fff', ...userProfileStyles.paragraph }}>
-                {nrOfProjects ? nrOfProjects : 0}
-              </Paragraph>
-              <Caption style={{ color: '#fff' }}>Projekt</Caption>
-            </View>
-          </View>
         </View>
-
-        <UserItems
-          userProjects={userProjects}
-          userProposals={userProposals}
-          userUploads={userUploads}
-          userProducts={userProducts}
-          navigation={props.navigation}
-        />
       </ScrollViewToTop>
     </>
   );
 };
 
-export default UserSpotlightScreen;
+export default HomeScreen;

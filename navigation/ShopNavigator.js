@@ -7,7 +7,6 @@ import { Button } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../constants/Colors';
-import WalkthroughScreen from '../screens/WalkthroughScreen';
 import * as authActions from '../store/actions/auth';
 import * as productsActions from '../store/actions/products';
 import * as profilesActions from '../store/actions/profiles';
@@ -22,11 +21,9 @@ const ShopDrawerNavigator = createDrawerNavigator();
 export const ShopNavigator = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const currentProfile = useSelector((state) => state.profiles.userProfile || {});
-  const hasWalkedThrough = currentProfile.hasWalkedThrough;
 
   console.log('Calling ShopNavigator');
   console.log(`Profile of current user ${currentProfile ? 'exists' : 'does not exist yet'}`);
-  console.log(`${currentProfile ? 'hasWalkedThrough: ' + hasWalkedThrough : ''}`);
 
   const loadAppData = async () => {
     try {
@@ -54,10 +51,6 @@ export const ShopNavigator = () => {
 
   if (!isLoaded) {
     return null;
-  }
-
-  if (!hasWalkedThrough) {
-    return <WalkthroughScreen currUserId={currentProfile.id} />;
   }
 
   return (

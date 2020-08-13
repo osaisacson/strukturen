@@ -39,14 +39,7 @@ const AllProfilesScreen = (props) => {
   }, [dispatch, setIsLoading, setError]);
 
   //Set which fields to filter by
-  const KEYS_TO_FILTERS = [
-    'profileName',
-    'profileDescription',
-    'email',
-    'phone',
-    'address',
-    'location',
-  ];
+  const KEYS_TO_FILTERS = ['profileName', 'email'];
 
   const filteredProfilesRaw = profiles.filter(createFilter(searchQuery, KEYS_TO_FILTERS));
 

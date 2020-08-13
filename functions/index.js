@@ -17,8 +17,8 @@ const expo = new Expo();
 
 // Creates a client
 const storage = new Storage({
-  projectId: 'egnahemsfabriken',
-  keyFilename: 'egnahemsfabriken-firebase.json',
+  projectId: 'strukturen-5c143',
+  keyFilename: 'strukturen-5c143-firebase.json',
 });
 
 exports.storeImage = functions.https.onRequest((request, response) => {
@@ -29,7 +29,7 @@ exports.storeImage = functions.https.onRequest((request, response) => {
       console.log(err);
       return response.status(500).json({ error: err });
     });
-    const bucket = storage.bucket('egnahemsfabriken.appspot.com');
+    const bucket = storage.bucket('strukturen-5c143.appspot.com');
     const uuid = UUID();
 
     return bucket.upload(

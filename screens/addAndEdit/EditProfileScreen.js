@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import { Alert, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ImagePicker from '../../components/UI/ImgPicker';
 import Loader from '../../components/UI/Loader';
 import { FormFieldWrapper, formStyles } from '../../components/wrappers/FormFieldWrapper';
 import FormWrapper from '../../components/wrappers/FormWrapper';
@@ -51,23 +50,11 @@ const EditProfileScreen = (props) => {
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
       profileName: currentProfile ? currentProfile.profileName : '',
-      profileDescription: currentProfile ? currentProfile.profileDescription : '',
       email: currentProfile ? currentProfile.email : '',
-      phone: currentProfile ? currentProfile.phone : '',
-      address: currentProfile ? currentProfile.address : '',
-      location: currentProfile ? currentProfile.location : '',
-      defaultPickupDetails: currentProfile ? currentProfile.defaultPickupDetails : '',
-      image: currentProfile ? currentProfile.image : '',
     },
     inputValidities: {
       profileName: !!currentProfile,
-      profileDescription: true,
       email: !!currentProfile,
-      phone: !!currentProfile,
-      address: !!currentProfile,
-      location: !!currentProfile,
-      defaultPickupDetails: true,
-      image: !!currentProfile,
     },
     formIsValid: !!currentProfile,
   });
@@ -86,13 +73,7 @@ const EditProfileScreen = (props) => {
           profilesActions.updateProfile(
             firebaseId,
             formState.inputValues.profileName,
-            formState.inputValues.profileDescription,
-            formState.inputValues.email,
-            formState.inputValues.phone,
-            formState.inputValues.address,
-            formState.inputValues.location,
-            formState.inputValues.defaultPickupDetails,
-            formState.inputValues.image
+            formState.inputValues.email
           )
         );
         props.navigation.navigate('ProductDetail', { detailId: firebaseId });
@@ -101,13 +82,7 @@ const EditProfileScreen = (props) => {
         await dispatch(
           profilesActions.createProfile(
             formState.inputValues.profileName,
-            formState.inputValues.profileDescription,
-            formState.inputValues.email,
-            formState.inputValues.phone,
-            formState.inputValues.address,
-            formState.inputValues.location,
-            formState.inputValues.defaultPickupDetails,
-            formState.inputValues.image
+            formState.inputValues.email
           )
         );
       }
@@ -153,12 +128,6 @@ const EditProfileScreen = (props) => {
       submitButtonText="Spara Profil"
       handlerForButtonSubmit={submitHandler}
       isLoading={isLoading}>
-      <FormFieldWrapper prompt="Välj en profilbild">
-        <ImagePicker
-          onImageTaken={textChangeHandler('image')}
-          passedImage={formState.inputValues.image}
-        />
-      </FormFieldWrapper>
       <FormFieldWrapper prompt="Skriv in ett användarnamn">
         <TextInput
           placeholder="Användarnamn"
@@ -167,27 +136,6 @@ const EditProfileScreen = (props) => {
           onChangeText={textChangeHandler('profileName')}
           keyboardType="default"
           autoCapitalize="none"
-          returnKeyType="next"
-        />
-      </FormFieldWrapper>
-      <FormFieldWrapper prompt="Skriv in en kort beskrivning">
-        <TextInput
-          placeholder="Beskrivning"
-          style={formStyles.multilineInput}
-          value={formState.inputValues.profileDescription}
-          multiline
-          numberOfLines={4}
-          onChangeText={textChangeHandler('profileDescription')}
-          returnKeyType="next"
-        />
-      </FormFieldWrapper>
-      <FormFieldWrapper prompt="Lägg in ett kontaktnummer">
-        <TextInput
-          placeholder="Telefon"
-          style={formStyles.input}
-          value={formState.inputValues.phone.toString()}
-          onChangeText={textChangeHandler('phone')}
-          keyboardType="number-pad"
           returnKeyType="next"
         />
       </FormFieldWrapper>
@@ -202,39 +150,6 @@ const EditProfileScreen = (props) => {
           email
           autoCapitalize="none"
           returnKeyType="next"
-        />
-      </FormFieldWrapper>
-      <FormFieldWrapper prompt="Skriv in addressen återbruket vanligtvis kan hämtas på">
-        <TextInput
-          placeholder="Address"
-          style={formStyles.input}
-          value={formState.inputValues.address}
-          onChangeText={textChangeHandler('address')}
-          keyboardType="default"
-          autoCapitalize="none"
-          returnKeyType="next"
-        />
-      </FormFieldWrapper>
-      <FormFieldWrapper prompt="Skriv in din ort">
-        <TextInput
-          placeholder="Ort"
-          style={formStyles.input}
-          value={formState.inputValues.location}
-          onChangeText={textChangeHandler('location')}
-          keyboardType="default"
-          autoCapitalize="none"
-          returnKeyType="next"
-        />
-      </FormFieldWrapper>
-      <FormFieldWrapper prompt="Skriv in eventuella generella upphämtningsdetaljer">
-        <TextInput
-          placeholder="Generella upphämtningsdetaljer (valfritt)"
-          style={formStyles.input}
-          value={formState.inputValues.defaultPickupDetails}
-          onChangeText={textChangeHandler('defaultPickupDetails')}
-          keyboardType="default"
-          autoCapitalize="none"
-          returnKeyType="done"
         />
       </FormFieldWrapper>
     </FormWrapper>
