@@ -1,22 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import HeaderThree from '../../components/UI/HeaderThree';
-
 export const FormFieldWrapper = (props) => {
-  return (
-    <View style={formStyles.formControl}>
-      {props.label ? <HeaderThree text={props.label} style={formStyles.sectionLabel} /> : null}
-      {props.highlightedSubLabel ? (
-        <HeaderThree
-          style={{ fontFamily: 'roboto-bold', marginLeft: 5 }}
-          text={props.highlightedSubLabel}
-        />
-      ) : null}
-      {props.subLabel ? <HeaderThree text={props.subLabel} style={{ marginLeft: 5 }} /> : null}
-      {props.children}
-    </View>
-  );
+  return <View style={formStyles.formControl}>{props.children}</View>;
 };
 
 export const formStyles = StyleSheet.create({

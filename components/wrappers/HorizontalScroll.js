@@ -1,0 +1,67 @@
+import React from 'react';
+import { ScrollView, View } from 'react-native';
+
+import Goal from '../UI/Goal';
+
+const HorizontalScroll = ({ scrollData, renderedItemType, navigation }) => {
+  //Set defaults
+  let RenderedComponent;
+  let scrollHeight;
+  let detailPath;
+
+  //Change component to render, height of scroll and path to go to on click based on which type we want to render.
+  if (renderedItemType === 'goals') {
+    RenderedComponent = Goal;
+    scrollHeight = 100;
+    detailPath = 'GoalDetail';
+  }
+
+  if (!scrollData.length) {
+    scrollHeight = 0;
+  }
+
+  const selectItemHandler = (id, ownerId, title) => {
+    navigation.navigate(detailPath, {
+      detailId: id,
+      ownerId,
+      detailTitle: title,
+    });
+  };
+
+  return (
+    <>
+      <ScrollView showsHorizontalScrollIndicator={false} scrollEventThrottle={16}>
+        <View
+          style={{
+            flex: 1,
+            height: scrollHeight,
+          }}>
+          {/* If dataset passed is not empty  */}
+          {scrollData.length ? (
+            <View
+              style={{
+                height: scrollHeight,
+                marginTop: 20,
+              }}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {scrollData.map((item) => (
+                  <RenderedComponent
+                    navigation={navigation}
+                    itemData={item}
+                    key={item.id}
+                    isHorizontal
+                    onSelect={() => {
+                      selectItemHandler(item.id, item.ownerId, item.title);
+                    }}
+                  />
+                ))}
+              </ScrollView>
+            </View>
+          ) : null}
+        </View>
+      </ScrollView>
+    </>
+  );
+};
+
+export default HorizontalScroll;

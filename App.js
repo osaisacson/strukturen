@@ -17,15 +17,11 @@ import checkExpiredToken from './store/middlewares/checkExpiredToken';
 import authReducer from './store/reducers/auth';
 import goalsReducer from './store/reducers/goals';
 import profilesReducer from './store/reducers/profiles';
-import projectsReducer from './store/reducers/projects';
-import proposalsReducer from './store/reducers/proposals';
 
 //Combines all the reducers which manages our redux state. This is where we get our current state from in the child screens.
 const rootReducer = combineReducers({
   goals: goalsReducer,
-  projects: projectsReducer,
   profiles: profilesReducer,
-  proposals: proposalsReducer,
   auth: authReducer,
 });
 
@@ -60,9 +56,7 @@ const App = () => {
         Asset.loadAsync([require('./assets/userBackground.png')]),
         // Load fonts
         Font.loadAsync({
-          'bebas-neue': require('./assets/fonts/BebasNeue-Regular.ttf'),
-          'bebas-neue-bold': require('./assets/fonts/BebasNeue-Bold.ttf'),
-          'bebas-neue-book': require('./assets/fonts/BebasNeue-Book.ttf'),
+          'bowlby-bold': require('./assets/fonts/BowlbyOneSC-Regular.ttf'),
           'bebas-neue-light': require('./assets/fonts/BebasNeue-Light.ttf'),
           'bebas-neue-thin': require('./assets/fonts/BebasNeue-Thin.ttf'),
           'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),

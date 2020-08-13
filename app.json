@@ -21,12 +21,7 @@
     "ios": {
       "bundleIdentifier": "com.egnahemsfabriken.strukturen",
       "buildNumber": "1.0.0",
-      "googleServicesFile": "./GoogleService-Info.plist",
-      "infoPlist": {
-        "NSCameraUsageDescription": "strukturen ber om åtkomst till din kamera så du kan ta och lägga upp bilder till dina poster i appen.",
-        "NSPhotoLibraryUsageDescription": "strukturen ber om åtkomst till ditt kameragalleri så du kan välja bland och lägga upp bilder till dina poster i appen.",
-        "NSPhotoLibraryAddUsageDescription": "strukturen ber om åtkomst till ditt kameragalleri så du kan ladda upp bilder till dina poster i appen."
-      }
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "package": "com.egnahemsfabriken.strukturen",
@@ -36,13 +31,7 @@
         "backgroundColor": "#ffffff"
       },
       "googleServicesFile": "./google-services.json",
-      "permissions": [
-        "CAMERA_ROLL",
-        "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE",
-        "USE_FINGERPRINT"
-      ]
+      "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE", "USE_FINGERPRINT"]
     }
   }
 }

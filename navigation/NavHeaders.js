@@ -2,15 +2,16 @@ import React from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import HeaderButton from '../components/UI/HeaderButton';
+import CustomHeaderButton from '../components/UI/CustomHeaderButton';
 import Colors from '../constants/Colors';
+import Styles from '../constants/Styles';
 
 export const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Colors.darkPrimary,
   },
   headerTitleStyle: {
-    fontFamily: 'bebas-neue-bold',
+    fontFamily: Styles.defaultFontFamily,
     fontSize: 25,
   },
   headerBackTitleStyle: {
@@ -22,7 +23,7 @@ export const defaultNavOptions = {
 export const defaultMainPageOptions = (navData) => {
   return {
     headerLeft: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Menu"
           iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
@@ -65,7 +66,7 @@ export const topStackHeaderForTabs = (navData) => {
       backgroundColor: Colors.darkPrimary,
     },
     headerTitleStyle: {
-      fontFamily: 'bebas-neue-bold',
+      fontFamily: 'bowlby-bold',
       fontSize: 25,
     },
     headerBackTitleStyle: {

@@ -3,10 +3,10 @@ import { FlatList, View, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 
-import EmptyState from '../../components/UI/EmptyState';
-import Error from '../../components/UI/Error';
-import Loader from '../../components/UI/Loader';
-import * as profilesActions from '../../store/actions/profiles';
+import EmptyState from '../components/states/EmptyState';
+import Error from '../components/states/Error';
+import Loader from '../components/states/Loader';
+import * as profilesActions from '../store/actions/profiles';
 
 const AllProfilesScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false);

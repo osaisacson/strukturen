@@ -1,4 +1,5 @@
 export default {
+  defaultFontFamily: 'bowlby-bold',
   borderRadius: 5,
   leftRight: 15,
   goalItemHeight: 200,

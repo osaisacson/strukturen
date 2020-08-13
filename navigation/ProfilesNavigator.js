@@ -1,9 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
-import AllProfilesScreen from '../screens/shop/AllProfilesScreen';
-import UserProfile from '../screens/user/UserProfile';
-import { defaultNavOptions, defaultMainPageOptions, mainPageOptionsWithUser } from './NavHeaders';
+import AllProfilesScreen from '../screens/AllProfilesScreen';
+import { defaultNavOptions, defaultMainPageOptions } from './NavHeaders';
 
 const ProfilesStackNavigator = createStackNavigator();
 
@@ -14,11 +13,6 @@ export const ProfilesNavigator = () => {
         name="Alla Användare"
         component={AllProfilesScreen}
         options={defaultMainPageOptions}
-      />
-      <ProfilesStackNavigator.Screen
-        name="Användare"
-        component={UserProfile}
-        options={mainPageOptionsWithUser}
       />
     </ProfilesStackNavigator.Navigator>
   );

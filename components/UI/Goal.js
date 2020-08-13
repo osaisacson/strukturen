@@ -5,24 +5,21 @@ import Styles from '../../constants/Styles';
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
 
-const Goal = ({ navigation, itemData, showBackgroundText, isHorizontal, onSelect }) => {
+const Goal = ({ navigation, itemData }) => {
+  const onSelect = () => navigation.navigate('EditGoal');
+
+  const { title, text } = itemData;
+
   return (
     <View style={styles.container}>
-      {showBackgroundText ? (
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.date}>
-          {itemData.date}
-        </Text>
-      ) : null}
-      <Card style={isHorizontal ? styles.horizontalGoal : styles.goal}>
+      <Card style={styles.goal}>
         <View style={styles.touchable}>
           <TouchableCmp onPress={onSelect} useForeground>
-            {itemData.title ? <Text style={styles.price}>{itemData.title}</Text> : null}
+            {title ? <Text>{title}</Text> : null}
+            {text ? <Text>{text}</Text> : null}
           </TouchableCmp>
         </View>
       </Card>
-      <Text numberOfLines={1} ellipsizeMode="tail" style={styles.text}>
-        {itemData.text}
-      </Text>
     </View>
   );
 };

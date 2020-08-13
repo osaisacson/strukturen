@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import { Alert, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Loader from '../../components/UI/Loader';
+import Loader from '../../components/states/Loader';
 import { FormFieldWrapper, formStyles } from '../../components/wrappers/FormFieldWrapper';
 import FormWrapper from '../../components/wrappers/FormWrapper';
 import * as profilesActions from '../../store/actions/profiles';

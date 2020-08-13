@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import SaferArea from '../UI/SaferArea';
+import SaferArea from '../wrappers/SaferArea';
 import ScrollViewToTop from './ScrollViewToTop';
 
 export const DetailWrapper = ({ children }) => {
@@ -48,7 +48,7 @@ export const detailStyles = StyleSheet.create({
   },
   sectionHeader: {
     marginLeft: 5,
-    fontFamily: 'bebas-neue-bold',
+    fontFamily: 'bowlby-bold',
     fontSize: 18,
     paddingTop: 30,
   },

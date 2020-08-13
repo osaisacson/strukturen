@@ -7,11 +7,10 @@ import { Button } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../constants/Colors';
+import Styles from '../constants/Styles';
 import * as authActions from '../store/actions/auth';
 import * as goalsActions from '../store/actions/goals';
 import * as profilesActions from '../store/actions/profiles';
-import * as projectsActions from '../store/actions/projects';
-import * as proposalsActions from '../store/actions/proposals';
 import { AboutNavigator } from './AboutNavigator';
 import { ProfilesNavigator } from './ProfilesNavigator';
 import { TabNavigator } from './TabNavigator';
@@ -31,8 +30,6 @@ export const ShopNavigator = () => {
       const allPromises = await Promise.all([
         dispatch(profilesActions.fetchProfiles()),
         dispatch(goalsActions.fetchGoals()),
-        dispatch(projectsActions.fetchProjects()),
-        dispatch(proposalsActions.fetchProposals()),
       ]);
       return allPromises;
     } catch (error) {
@@ -75,7 +72,7 @@ export const ShopNavigator = () => {
                   }}
                   labelStyle={{
                     paddingTop: 2,
-                    fontFamily: 'bebas-neue-bold',
+                    fontFamily: Styles.defaultFontFamily,
                     fontSize: 14,
                   }}
                   compact
