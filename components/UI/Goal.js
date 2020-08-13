@@ -4,7 +4,6 @@ import { View, Text, StyleSheet } from 'react-native';
 import Styles from '../../constants/Styles';
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
-import UserAvatar from './UserAvatar';
 
 const Goal = ({ navigation, itemData, showBackgroundText, isHorizontal, onSelect }) => {
   return (
@@ -15,24 +14,6 @@ const Goal = ({ navigation, itemData, showBackgroundText, isHorizontal, onSelect
         </Text>
       ) : null}
       <Card style={isHorizontal ? styles.horizontalGoal : styles.goal}>
-        <View
-          style={{
-            position: 'absolute',
-            alignSelf: 'flex-start',
-            zIndex: 100,
-          }}>
-          <UserAvatar
-            size={30}
-            userId={itemData.ownerId}
-            showBadge={false}
-            actionOnPress={() => {
-              navigation.navigate('Användare', {
-                detailId: itemData.ownerId,
-              });
-            }}
-          />
-        </View>
-
         <View style={styles.touchable}>
           <TouchableCmp onPress={onSelect} useForeground>
             {itemData.title ? <Text style={styles.price}>{itemData.title}</Text> : null}

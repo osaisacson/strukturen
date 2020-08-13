@@ -89,7 +89,7 @@ const EditProfileScreen = (props) => {
     } catch (err) {
       setError(err.message);
     }
-    props.navigation.navigate('Min Sida');
+    props.navigation.navigate('Strukturen');
     setIsLoading(false);
   }, [dispatch, currentProfile, formState]);
 

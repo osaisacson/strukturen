@@ -1,14 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { FlatList, View, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
-import { createFilter } from 'react-native-search-filter';
 import { useSelector, useDispatch } from 'react-redux';
 
 import EmptyState from '../../components/UI/EmptyState';
 import Error from '../../components/UI/Error';
 import Loader from '../../components/UI/Loader';
-import RoundItem from '../../components/UI/RoundItem';
-import SearchBar from '../../components/UI/SearchBar';
 import * as profilesActions from '../../store/actions/profiles';
 
 const AllProfilesScreen = (props) => {
@@ -18,9 +15,6 @@ const AllProfilesScreen = (props) => {
 
   //Get original profiles from state
   const profiles = useSelector((state) => state.profiles.allProfiles);
-
-  //Prepare for changing the rendered profiles on search
-  const [searchQuery, setSearchQuery] = useState('');
 
   const dispatch = useDispatch();
 
@@ -37,12 +31,7 @@ const AllProfilesScreen = (props) => {
     setIsRefreshing(false);
   }, [dispatch, setIsLoading, setError]);
 
-  //Set which fields to filter by
-  const KEYS_TO_FILTERS = ['profileName', 'email'];
-
-  const filteredProfilesRaw = profiles.filter(createFilter(searchQuery, KEYS_TO_FILTERS));
-
-  const filteredProfiles = filteredProfilesRaw.sort(function (a, b) {
+  const filteredProfiles = profiles.sort(function (a, b) {
     return b.profileName - a.profileName;
   });
 
@@ -67,11 +56,6 @@ const AllProfilesScreen = (props) => {
 
   return (
     <View>
-      <SearchBar
-        placeholder="Leta bland användare: namn, beskrivning, address..."
-        onChangeText={(term) => setSearchQuery(term)}
-      />
-
       <FlatList
         initialNumToRender={10}
         horizontal={false}
@@ -90,13 +74,15 @@ const AllProfilesScreen = (props) => {
                 borderBottom: 0.2,
                 borderColor: '#666',
               }}>
-              <RoundItem
+              {itemData.item.profileName}
+
+              {/* <RoundItem
                 key={itemData.item.profileId}
                 itemData={itemData.item}
                 onSelect={() => {
                   selectItemHandler(itemData.item.profileId, itemData.item.profileName);
                 }}
-              />
+              /> */}
               <Text style={{ alignSelf: 'center', paddingLeft: 10 }}>
                 {itemData.item.profileName}
               </Text>

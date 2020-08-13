@@ -3,7 +3,6 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/UI/HeaderButton';
-import UserAvatar from '../components/UI/UserAvatar';
 import Colors from '../constants/Colors';
 
 export const defaultNavOptions = {
@@ -35,11 +34,11 @@ export const defaultMainPageOptions = (navData) => {
     ),
     headerRight: () => (
       <View style={styles.avatarContainer}>
-        <UserAvatar
-          style={styles.userAvatar}
-          showBadge
-          actionOnPress={() => {
-            navData.navigation.navigate('Min Sida');
+        <Item
+          title="Menu"
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
           }}
         />
       </View>
@@ -75,11 +74,11 @@ export const topStackHeaderForTabs = (navData) => {
     headerTintColor: '#fff',
     headerRight: () => (
       <View style={styles.avatarContainer}>
-        <UserAvatar
-          style={styles.userAvatar}
-          showBadge
-          actionOnPress={() => {
-            navData.navigation.navigate('Min Sida');
+        <Item
+          title="Menu"
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
           }}
         />
       </View>
@@ -95,11 +94,11 @@ export const mainPageOptionsWithUser = (navData) => {
         style={Platform.select({
           android: styles.avatarContainer,
         })}>
-        <UserAvatar
-          style={Platform.select({ ios: styles.userAvatar })}
-          showBadge
-          actionOnPress={() => {
-            navData.navigation.navigate('Min Sida');
+        <Item
+          title="Menu"
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
           }}
         />
       </View>

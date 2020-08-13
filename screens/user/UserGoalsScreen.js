@@ -7,7 +7,6 @@ import Error from '../../components/UI/Error';
 import Goal from '../../components/UI/Goal';
 import Loader from '../../components/UI/Loader';
 import SaferArea from '../../components/UI/SaferArea';
-import SearchBar from '../../components/UI/SearchBar';
 import * as goalsActions from '../../store/actions/goals';
 
 const UserGoalsScreen = (props) => {
@@ -22,11 +21,9 @@ const UserGoalsScreen = (props) => {
   const [error, setError] = useState();
 
   //Prepare for changing the rendered goals on search
-  const [renderedGoals, setRenderedGoals] = useState(userGoals);
-  const [searchQuery, setSearchQuery] = useState('');
 
   //Sort goals by date
-  const goalsSorted = renderedGoals.sort(function (a, b) {
+  const goalsSorted = userGoals.sort(function (a, b) {
     return new Date(b.date) - new Date(a.date);
   });
 
@@ -43,16 +40,6 @@ const UserGoalsScreen = (props) => {
     }
     setIsRefreshing(false);
   }, [dispatch, setIsLoading, setError]);
-
-  const searchHandler = (text) => {
-    const newData = renderedGoals.filter((item) => {
-      const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-    });
-    setRenderedGoals(text.length ? newData : userGoals);
-    setSearchQuery(text.length ? text : '');
-  };
 
   const selectItemHandler = (id, ownerId, title) => {
     props.navigation.navigate('GoalDetail', {
@@ -76,12 +63,6 @@ const UserGoalsScreen = (props) => {
 
   return (
     <SaferArea>
-      <SearchBar
-        actionOnChangeText={(text) => searchHandler(text)}
-        searchQuery={searchQuery}
-        placeholder="Leta bland ditt återbruk"
-      />
-
       <FlatList
         numColumns={2}
         initialNumToRender={12}

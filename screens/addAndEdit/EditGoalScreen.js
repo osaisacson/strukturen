@@ -2,13 +2,10 @@ import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import { Alert, TextInput, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ImagePicker from '../../components/UI/ImgPicker';
 import Loader from '../../components/UI/Loader';
-import PickerItem from '../../components/UI/PickerItem';
 import { FormFieldWrapper, formStyles } from '../../components/wrappers/FormFieldWrapper';
 import FormWrapper from '../../components/wrappers/FormWrapper';
 import * as goalsActions from '../../store/actions/goals';
-import { PART, CONDITION, STYLE, MATERIAL, COLOR } from '../../data/filters';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -53,55 +50,14 @@ const EditGoalScreen = (props) => {
 
   const dispatch = useDispatch();
 
-  const defaultAddress = currentProfile.address ? currentProfile.address : '';
-  const defaultLocation = currentProfile.location ? currentProfile.location : '';
-  const defaultPhone = currentProfile.phone ? currentProfile.phone : '';
-  const defaultPickupDetails = currentProfile.defaultPickupDetails
-    ? currentProfile.defaultPickupDetails
-    : '';
-
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
       title: editedGoal ? editedGoal.title : '',
-      description: editedGoal ? editedGoal.description : '',
-      background: editedGoal ? editedGoal.background : '',
-      internalComments: editedGoal ? editedGoal.internalComments : '',
-      length: editedGoal ? editedGoal.length : '',
-      height: editedGoal ? editedGoal.height : '',
-      width: editedGoal ? editedGoal.width : '',
-      price: editedGoal ? editedGoal.price : '',
-      priceText: editedGoal ? editedGoal.priceText : '',
-      address: editedGoal ? editedGoal.address : defaultAddress, //set current address as default if have one
-      location: editedGoal ? editedGoal.location : defaultLocation, //set current location as default if have one
-      pickupDetails: editedGoal ? editedGoal.pickupDetails : defaultPickupDetails, //set pickup details the user entered in their profile as default if they have them
-      phone: editedGoal ? editedGoal.phone : defaultPhone, //set current phone as default if have one
-      image: editedGoal ? editedGoal.image : '',
-      category: editedGoal ? editedGoal.category : 'Ingen',
-      condition: editedGoal ? editedGoal.condition : 'Inget',
-      style: editedGoal ? editedGoal.style : 'Ingen',
-      material: editedGoal ? editedGoal.material : 'Blandade',
-      color: editedGoal ? editedGoal.color : 'Omålad',
+      text: editedGoal ? editedGoal.text : '',
     },
     inputValidities: {
       title: !!editedGoal,
-      description: true,
-      background: true,
-      internalComments: true,
-      length: true,
-      height: true,
-      width: true,
-      price: true,
-      priceText: true,
-      address: true,
-      location: true,
-      pickupDetails: true,
-      phone: true,
-      image: !!editedGoal,
-      category: true,
-      condition: true,
-      style: true,
-      material: true,
-      color: true,
+      text: !!editedGoal,
     },
     formIsValid: !!editedGoal,
   });
@@ -114,11 +70,7 @@ const EditGoalScreen = (props) => {
 
   const submitHandler = useCallback(async () => {
     if (!formState.formIsValid) {
-      Alert.alert(
-        'Ojoj',
-        'Det verkar som något saknas i formuläret, kolla så du fyllt i titel och lagt upp en bild.',
-        [{ text: 'OK' }]
-      );
+      Alert.alert('Ojoj', 'Det verkar som något saknas i formuläret', [{ text: 'OK' }]);
       return;
     }
     setError(null);
@@ -126,28 +78,7 @@ const EditGoalScreen = (props) => {
     try {
       if (editedGoal) {
         await dispatch(
-          goalsActions.updateGoal(
-            prodId,
-            formState.inputValues.category,
-            formState.inputValues.condition,
-            formState.inputValues.style,
-            formState.inputValues.material,
-            formState.inputValues.color,
-            formState.inputValues.title,
-            formState.inputValues.image,
-            formState.inputValues.address,
-            formState.inputValues.location,
-            formState.inputValues.pickupDetails,
-            +formState.inputValues.phone,
-            formState.inputValues.description,
-            formState.inputValues.background,
-            +formState.inputValues.length,
-            +formState.inputValues.height,
-            +formState.inputValues.width,
-            +formState.inputValues.price,
-            formState.inputValues.priceText,
-            formState.inputValues.internalComments
-          )
+          goalsActions.updateGoal(prodId, formState.inputValues.title, formState.inputValues.text)
         );
         props.navigation.navigate('GoalDetail', { detailId: prodId });
         setIsLoading(false);

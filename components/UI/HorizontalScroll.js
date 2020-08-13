@@ -6,34 +6,13 @@ import Colors from './../../constants/Colors';
 import Styles from './../../constants/Styles';
 import AddGoal from './AddGoal';
 import Goal from './Goal';
-import LargeImageItem from './LargeImageItem';
-import RoundItem from './RoundItem';
-import TextItem from './TextItem';
 import TouchableCmp from './TouchableCmp';
 
 const HorizontalScroll = (props) => {
   //By default sets the rendered item to be Goal
-  let RenderedItem = Goal;
+  const RenderedItem = Goal;
   let scrollHeight = props.scrollHeight ? props.scrollHeight : Styles.goalItemHeight;
   const detailPath = props.detailPath ? props.detailPath : 'GoalDetail';
-
-  //Check if we instead should render the RoundItem
-  if (props.roundItem) {
-    RenderedItem = RoundItem;
-    scrollHeight = props.scrollHeight ? props.scrollHeight : Styles.roundItemHeight;
-  }
-
-  //Check if we instead should render the TextItem
-  if (props.textItem) {
-    RenderedItem = TextItem;
-    scrollHeight = props.scrollHeight ? props.scrollHeight : Styles.textItemHeight;
-  }
-
-  //Check if we instead should render the LargeImageItem
-  if (props.largeImageItem) {
-    RenderedItem = LargeImageItem;
-    scrollHeight = Styles.largeImageItemHeight;
-  }
 
   const scrollData = props.scrollData;
 
