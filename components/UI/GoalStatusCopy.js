@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import Colors from '../../constants/Colors';
 
-const ProductStatusCopy = (props) => {
+const GoalStatusCopy = (props) => {
   const {
     status,
     reservedUntil,
@@ -18,14 +18,14 @@ const ProductStatusCopy = (props) => {
     sellerAgreed,
     suggestedDate,
     address,
-  } = props.selectedProduct;
+  } = props.selectedGoal;
 
   //The texts for the status will change based on where we are in the reservation process
   let mainStatus = '';
   let secondaryStatus = '';
   let tertiaryStatus = '';
 
-  //Check status of product and privileges of user
+  //Check status of goal and privileges of user
   const isReserved = status === 'reserverad';
   const isOrganised = status === 'ordnad';
   const isPickedUp = status === 'hämtad';
@@ -85,7 +85,7 @@ const ProductStatusCopy = (props) => {
     secondaryStatus = '';
   }
 
-  //If product is collected
+  //If goal is collected
   if (collectedDate) {
     mainStatus = `Hämtades ${Moment(collectedDate).locale('sv').format('D MMMM YYYY')}`;
     secondaryStatus = '';
@@ -129,7 +129,7 @@ const ProductStatusCopy = (props) => {
   );
 };
 
-export default ProductStatusCopy;
+export default GoalStatusCopy;
 
 const styles = StyleSheet.create({
   infoText: { fontFamily: 'roboto-light-italic' },

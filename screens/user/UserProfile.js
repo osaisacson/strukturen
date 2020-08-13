@@ -3,7 +3,6 @@ import { View, StyleSheet } from 'react-native';
 import { Avatar, Title, Caption, Paragraph } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
-import ContactDetails from '../../components/UI/ContactDetails';
 import EmptyState from '../../components/UI/EmptyState';
 import HorizontalScroll from '../../components/UI/HorizontalScroll';
 import ScrollViewToTop from '../../components/wrappers/ScrollViewToTop';
@@ -16,13 +15,13 @@ const UserProfile = (props) => {
   );
   const currentProfile = profilesArray[0];
 
-  //Gets all products which are not booked or organised for the user we are currently visiting
-  const allProducts = useSelector((state) => state.products.availableProducts);
-  const userProducts = allProducts.filter((product) => product.ownerId === visitedUserId);
-  const availableUserProductsRaw = userProducts.filter(
-    (product) => product.status === 'redo' || product.status === ''
+  //Gets all goals which are not booked or organised for the user we are currently visiting
+  const allGoals = useSelector((state) => state.goals.availableGoals);
+  const userGoals = allGoals.filter((goal) => goal.ownerId === visitedUserId);
+  const availableUserGoalsRaw = userGoals.filter(
+    (goal) => goal.status === 'redo' || goal.status === ''
   );
-  const availableUserProducts = availableUserProductsRaw.sort(function (a, b) {
+  const availableUserGoals = availableUserGoalsRaw.sort(function (a, b) {
     a = new Date(a.readyDate);
     b = new Date(b.readyDate);
     return b > a ? -1 : b < a ? 1 : 0;
@@ -44,19 +43,17 @@ const UserProfile = (props) => {
     (proj) => proj.ownerId === visitedUserId
   );
 
-  //COLLECTED: Gets all collected products from all products
-  const collectedItemsRawAll = userProducts.filter((product) => product.status === 'hämtad');
-  const collectedByUser = collectedItemsRawAll.filter(
-    (product) => product.newOwnerId === visitedUserId
-  );
+  //COLLECTED: Gets all collected goals from all goals
+  const collectedItemsRawAll = userGoals.filter((goal) => goal.status === 'hämtad');
+  const collectedByUser = collectedItemsRawAll.filter((goal) => goal.newOwnerId === visitedUserId);
 
-  //COLLECTED: Gets all collected products from user products
+  //COLLECTED: Gets all collected goals from user goals
   const collectedFromUser = collectedItemsRawAll.filter(
-    (product) => product.newOwnerId !== visitedUserId
+    (goal) => goal.newOwnerId !== visitedUserId
   );
 
   //Sets indicator numbers
-  const added = userProducts.length;
+  const added = userGoals.length;
   const collected = collectedByUser.length;
   const given = collectedFromUser.length;
   const nrOfProjects = userProjects.length;
@@ -119,15 +116,8 @@ const UserProfile = (props) => {
         </View>
       </View>
 
-      <View style={{ ...userProfileStyles.centeredContent, marginBottom: 20 }}>
-        <ContactDetails
-          isProfile
-          profileId={currentProfile.profileId}
-          buttonText="kontaktdetaljer"
-        />
-      </View>
       {userProposals.length ||
-      availableUserProducts.length ||
+      availableUserGoals.length ||
       collectedFromUser.length ||
       userProjects.length ? (
         <>
@@ -141,11 +131,11 @@ const UserProfile = (props) => {
               navigation={props.navigation}
             />
           ) : null}
-          {availableUserProducts.length ? (
+          {availableUserGoals.length ? (
             <HorizontalScroll
               title="Till Salu"
-              simpleCount={availableUserProducts.length}
-              scrollData={availableUserProducts}
+              simpleCount={availableUserGoals.length}
+              scrollData={availableUserGoals}
               navigation={props.navigation}
             />
           ) : null}

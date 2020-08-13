@@ -13,25 +13,25 @@ import HeaderThree from '../../components/UI/HeaderThree';
 import SectionCard from '../../components/UI/SectionCard';
 import { DetailWrapper, detailStyles } from '../../components/wrappers/DetailWrapper';
 import Colors from '../../constants/Colors';
-import * as productsActions from '../../store/actions/products';
-import ProductButtonLogic from './ProductButtonLogic';
+import * as goalsActions from '../../store/actions/goals';
+import GoalButtonLogic from './GoalButtonLogic';
 
-const ProductDetailScreen = (props) => {
+const GoalDetailScreen = (props) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  //Get product and owner id from navigation params (from parent screen) and current user id from state
-  const productId = props.route.params.detailId;
+  //Get goal and owner id from navigation params (from parent screen) and current user id from state
+  const goalId = props.route.params.detailId;
   const ownerId = props.route.params.ownerId;
   const currentProfile = useSelector((state) => state.profiles.userProfile || {});
   const loggedInUserId = currentProfile.profileId;
 
-  //Find us the product that matches the current productId
-  const selectedProduct = useSelector((state) =>
-    state.products.availableProducts.find((prod) => prod.id === productId)
+  //Find us the goal that matches the current goalId
+  const selectedGoal = useSelector((state) =>
+    state.goals.availableGoals.find((prod) => prod.id === goalId)
   );
 
-  if (!selectedProduct) {
+  if (!selectedGoal) {
     return null;
   }
 
@@ -58,14 +58,14 @@ const ProductDetailScreen = (props) => {
     location,
     pickupDetails,
     phone,
-  } = selectedProduct;
+  } = selectedGoal;
 
-  //Check status of product and privileges of user
+  //Check status of goal and privileges of user
   const hasEditPermission = ownerId === loggedInUserId;
   const isPickedUp = status === 'hämtad';
 
-  const editProductHandler = (id) => {
-    navigation.navigate('EditProduct', { detailId: id });
+  const editGoalHandler = (id) => {
+    navigation.navigate('EditGoal', { detailId: id });
   };
 
   const deleteHandler = () => {
@@ -79,7 +79,7 @@ const ProductDetailScreen = (props) => {
           style: 'destructive',
           onPress: () => {
             navigation.goBack();
-            dispatch(productsActions.deleteProduct(id));
+            dispatch(goalsActions.deleteGoal(id));
           },
         },
       ]
@@ -97,7 +97,7 @@ const ProductDetailScreen = (props) => {
           style: 'destructive',
           onPress: () => {
             dispatch(
-              productsActions.copyProduct(
+              goalsActions.copyGoal(
                 category,
                 condition,
                 style,
@@ -131,24 +131,24 @@ const ProductDetailScreen = (props) => {
     <DetailWrapper>
       <View>
         {/* Buttons for handling reservation, coordination and collection */}
-        <ProductButtonLogic
-          selectedProduct={selectedProduct}
+        <GoalButtonLogic
+          selectedGoal={selectedGoal}
           hasEditPermission={hasEditPermission}
           navigation={props.navigation}
         />
         <SectionCard>
-          {/* Product image */}
+          {/* Goal image */}
           <CachedImage style={detailStyles.image} uri={image ? image : ''} />
 
           {/* Show delete and edit buttons if the user has editing 
-        permissions and the product is not yet picked up */}
+        permissions and the goal is not yet picked up */}
           {hasEditPermission && !isPickedUp ? (
             <View style={detailStyles.editOptions}>
               <ButtonIcon
                 icon="delete"
                 color={Colors.warning}
                 onSelect={() => {
-                  deleteHandler(selectedProduct.id);
+                  deleteHandler(selectedGoal.id);
                 }}
               />
 
@@ -166,7 +166,7 @@ const ProductDetailScreen = (props) => {
                 icon="pen"
                 color={Colors.neutral}
                 onSelect={() => {
-                  editProductHandler(selectedProduct.id);
+                  editGoalHandler(selectedGoal.id);
                 }}
               />
             </View>
@@ -264,4 +264,4 @@ const ProductDetailScreen = (props) => {
   );
 };
 
-export default ProductDetailScreen;
+export default GoalDetailScreen;

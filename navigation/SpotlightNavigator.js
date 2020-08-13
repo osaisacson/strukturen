@@ -2,27 +2,17 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
 import usePopToTopOnBlur from '../hooks/usePopToTopOnBlur';
-import EditProductScreen, {
-  screenOptions as editProductScreenOptions,
-} from '../screens/addAndEdit/EditProductScreen';
+import EditGoalScreen, {
+  screenOptions as editGoalScreenOptions,
+} from '../screens/addAndEdit/EditGoalScreen';
 import EditProfileScreen, {
   screenOptions as editProfileScreenOptions,
 } from '../screens/addAndEdit/EditProfileScreen';
-import EditProjectScreen, {
-  screenOptions as editProjectScreenOptions,
-} from '../screens/addAndEdit/EditProjectScreen';
-import EditProposalScreen, {
-  screenOptions as editProposalScreenOptions,
-} from '../screens/addAndEdit/EditProposalScreen';
-import ProductDetailScreen from '../screens/details/ProductDetailScreen';
-import ProjectDetailScreen from '../screens/details/ProjectDetailScreen';
-import ProposalDetailScreen from '../screens/details/ProposalDetailScreen';
-import ProductsScreen from '../screens/shop/ProductsScreen';
+import GoalDetailScreen from '../screens/details/GoalDetailScreen';
+import Goals from '../screens/shop/Goals';
 import HomeScreen from '../screens/shop/HomeScreen';
-import UserProductsScreen from '../screens/user/UserProductsScreen';
+import UserGoalsScreen from '../screens/user/UserGoalsScreen';
 import UserProfile from '../screens/user/UserProfile';
-import UserProposalsScreen from '../screens/user/UserProposalsScreen';
-import UserSpotlightScreen from '../screens/user/UserSpotlightScreen';
 import {
   detailHeader,
   defaultNavOptions,
@@ -43,21 +33,11 @@ export const SpotlightNavigator = ({ navigation }) => {
         component={HomeScreen}
         options={defaultMainPageOptions}
       />
-      <SpotlightStackNavigator.Screen name="Återbruk" component={ProductsScreen} />
+      <SpotlightStackNavigator.Screen name="Återbruk" component={Goals} />
       {/* Details */}
       <SpotlightStackNavigator.Screen
-        name="ProductDetail"
-        component={ProductDetailScreen}
-        options={detailHeader}
-      />
-      <SpotlightStackNavigator.Screen
-        name="ProposalDetail"
-        component={ProposalDetailScreen}
-        options={detailHeader}
-      />
-      <SpotlightStackNavigator.Screen
-        name="ProjectDetail"
-        component={ProjectDetailScreen}
+        name="GoalDetail"
+        component={GoalDetailScreen}
         options={detailHeader}
       />
       {/* Edits */}
@@ -67,19 +47,9 @@ export const SpotlightNavigator = ({ navigation }) => {
         options={editProfileScreenOptions}
       />
       <SpotlightStackNavigator.Screen
-        name="EditProduct"
-        component={EditProductScreen}
-        options={editProductScreenOptions}
-      />
-      <SpotlightStackNavigator.Screen
-        name="EditProject"
-        component={EditProjectScreen}
-        options={editProjectScreenOptions}
-      />
-      <SpotlightStackNavigator.Screen
-        name="EditProposal"
-        component={EditProposalScreen}
-        options={editProposalScreenOptions}
+        name="EditGoal"
+        component={EditGoalScreen}
+        options={editGoalScreenOptions}
       />
       <SpotlightStackNavigator.Screen
         name="Användare"
@@ -87,18 +57,8 @@ export const SpotlightNavigator = ({ navigation }) => {
         options={mainPageOptionsWithUser}
       />
       <SpotlightStackNavigator.Screen
-        name="Min Sida"
-        component={UserSpotlightScreen}
-        options={mainPageOptionsNoUser}
-      />
-      <SpotlightStackNavigator.Screen
         name="Mitt upplagda återbruk"
-        component={UserProductsScreen}
-        options={mainPageOptionsNoUser}
-      />
-      <SpotlightStackNavigator.Screen
-        name="Alla mina efterlysningar"
-        component={UserProposalsScreen}
+        component={UserGoalsScreen}
         options={mainPageOptionsNoUser}
       />
     </SpotlightStackNavigator.Navigator>

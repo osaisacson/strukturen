@@ -8,7 +8,7 @@ import TouchableCmp from './TouchableCmp';
 const ProjectItem = ({ onSelect, itemData }) => {
   return (
     <View style={styles.container}>
-      <Card style={styles.product}>
+      <Card style={styles.goal}>
         <View style={styles.touchable}>
           <TouchableCmp onPress={onSelect} useForeground>
             <View style={styles.imageContainer}>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  product: {
+  goal: {
     height: 250,
     width: '93%',
     margin: '1.5%',

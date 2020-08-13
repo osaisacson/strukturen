@@ -4,18 +4,18 @@ import { Divider, Button } from 'react-native-paper';
 
 import Colors from './../../constants/Colors';
 import Styles from './../../constants/Styles';
-import HeaderTwo from './HeaderTwo';
+import AddGoal from './AddGoal';
+import Goal from './Goal';
 import LargeImageItem from './LargeImageItem';
-import ProductItem from './ProductItem';
 import RoundItem from './RoundItem';
 import TextItem from './TextItem';
 import TouchableCmp from './TouchableCmp';
 
 const HorizontalScroll = (props) => {
-  //By default sets the rendered item to be ProductItem
-  let RenderedItem = ProductItem;
-  let scrollHeight = props.scrollHeight ? props.scrollHeight : Styles.productItemHeight;
-  const detailPath = props.detailPath ? props.detailPath : 'ProductDetail';
+  //By default sets the rendered item to be Goal
+  let RenderedItem = Goal;
+  let scrollHeight = props.scrollHeight ? props.scrollHeight : Styles.goalItemHeight;
+  const detailPath = props.detailPath ? props.detailPath : 'GoalDetail';
 
   //Check if we instead should render the RoundItem
   if (props.roundItem) {
@@ -60,17 +60,12 @@ const HorizontalScroll = (props) => {
           backgroundColor: props.bgColor ? props.bgColor : 'transparent',
         }}>
         {props.title ? (
-          <HeaderTwo
+          <AddGoal
             title={props.title}
             subTitle={props.subTitle}
             extraSubTitle={props.extraSubTitle}
             buttonOnPress={props.buttonOnPress}
-            showAddLink={props.showAddLink}
-            buttonText={props.buttonText}
-            icon={props.icon}
-            simpleCount={props.simpleCount}
-            indicator={scrollData.length ? scrollData.length : 0}
-            showNotificationBadge={props.showNotificationBadge}
+            itemToAdd={props.itemToAdd}
           />
         ) : null}
         <View

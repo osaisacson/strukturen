@@ -91,7 +91,7 @@ const EditProjectScreen = (props) => {
             formState.inputValues.image
           )
         );
-        props.navigation.navigate('ProductDetail', { detailId: projId });
+        props.navigation.navigate('GoalDetail', { detailId: projId });
         setIsLoading(false);
       } else {
         await dispatch(

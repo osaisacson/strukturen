@@ -97,7 +97,7 @@ function getUserProfileById(profileId) {
 }
 
 exports.sendPushNotifications = functions.database
-  .ref('/products/{productId}')
+  .ref('/goals/{goalId}')
   .onUpdate(async ({ before, after }) => {
     const beforeVal = before.val();
     const afterVal = after.val();
@@ -107,66 +107,66 @@ exports.sendPushNotifications = functions.database
     const beforeSuggestedDate = beforeVal.suggestedDate;
     const afterSuggestedDate = afterVal.suggestedDate;
     const ownerId = afterVal.ownerId;
-    const productName = afterVal.title;
+    const goalName = afterVal.title;
 
-    //Sends a push notification when your product gets reserved
+    //Sends a push notification when your goal gets reserved
     if (!beforeReservedDate && afterReservedDate) {
       const reservedUserId = afterVal.reservedUserId;
 
       try {
-        const [reservedBy, productOwner] = await Promise.all([
+        const [reservedBy, goalOwner] = await Promise.all([
           getUserProfileById(reservedUserId),
           getUserProfileById(ownerId),
         ]);
 
-        if (reservedBy && productOwner.expoTokens) {
+        if (reservedBy && goalOwner.expoTokens) {
           const reservedMessage = {
-            to: productOwner.expoTokens,
+            to: goalOwner.expoTokens,
             sound: 'default',
             title: 'Produkt Reserverad',
-            body: `${reservedBy.profileName} reserverade precis ditt återbruk ${productName}. Gå in och se vilken tid de föreslagit för upphämtning eller föreslå en tid själv.`,
+            body: `${reservedBy.profileName} reserverade precis ditt återbruk ${goalName}. Gå in och se vilken tid de föreslagit för upphämtning eller föreslå en tid själv.`,
             _displayInForeground: true,
           };
 
           return expo
             .sendPushNotificationsAsync([reservedMessage])
-            .then(() => console.info('Product notification sent!'))
-            .catch((e) => console.error('Product notification failed!', e.message));
+            .then(() => console.info('Goal notification sent!'))
+            .catch((e) => console.error('Goal notification failed!', e.message));
         }
       } catch (error) {
         return console.error(error.message);
       }
     }
 
-    //Sends a push notification when a proposed collection date is set for your product
+    //Sends a push notification when a proposed collection date is set for your goal
     if (!beforeSuggestedDate && afterSuggestedDate) {
       const reservedUserId = afterVal.reservedUserId;
 
       try {
-        const [suggestedBy, productOwner] = await Promise.all([
+        const [suggestedBy, goalOwner] = await Promise.all([
           getUserProfileById(reservedUserId),
           getUserProfileById(ownerId),
         ]);
 
-        const byThemselves = suggestedBy === productOwner;
+        const byThemselves = suggestedBy === goalOwner;
         //If the owner was not the one suggesting the time
-        if (!byThemselves && suggestedBy && productOwner.expoTokens) {
+        if (!byThemselves && suggestedBy && goalOwner.expoTokens) {
           const dateMessage = {
-            to: productOwner.expoTokens,
+            to: goalOwner.expoTokens,
             sound: 'default',
             title: 'Förslag på upphämtningstid angivet',
             body: `${suggestedBy.profileName} föreslog precis ${moment(afterSuggestedDate)
               .locale('sv')
               .format(
                 'MMMM Do, HH:MM'
-              )} som upphämtningstid för ditt återbruk: "${productName}". Gå in och godkänn eller föreslå en annan tid.`,
+              )} som upphämtningstid för ditt återbruk: "${goalName}". Gå in och godkänn eller föreslå en annan tid.`,
             _displayInForeground: true,
           };
 
           return expo
             .sendPushNotificationsAsync([dateMessage])
-            .then(() => console.info('Product date notification sent!'))
-            .catch((e) => console.error('Product date notification failed!', e.message));
+            .then(() => console.info('Goal date notification sent!'))
+            .catch((e) => console.error('Goal date notification failed!', e.message));
         }
       } catch (error) {
         return console.error(error.message);

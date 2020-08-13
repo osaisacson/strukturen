@@ -3,7 +3,7 @@ import React from 'react';
 import HorizontalScroll from '../../components/UI/HorizontalScroll';
 
 const UserItems = (props) => {
-  const { userProjects, userProposals, userUploads, userProducts, navigation } = props;
+  const { userProjects, userProposals, userUploads, userGoals, navigation } = props;
 
   const activeUserProposals = userProposals.filter((proposal) => proposal.status !== 'löst');
 
@@ -29,11 +29,11 @@ const UserItems = (props) => {
         scrollData={userUploads}
         simpleCount={userUploads.length}
         navigation={navigation}
-        showAddLink={() => props.navigation.navigate('EditProduct')}
+        showAddLink={() => props.navigation.navigate('EditGoal')}
         showMoreLink={
-          userProducts.length ? () => props.navigation.navigate('Mitt upplagda återbruk') : false
+          userGoals.length ? () => props.navigation.navigate('Mitt upplagda återbruk') : false
         }
-        showMoreLinkName={`Se hela mitt förråd (${userProducts.length})`}
+        showMoreLinkName={`Se hela mitt förråd (${userGoals.length})`}
       />
       <HorizontalScroll
         largeImageItem

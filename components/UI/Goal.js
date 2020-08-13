@@ -1,61 +1,20 @@
-import { Ionicons } from '@expo/vector-icons';
-import Moment from 'moment/min/moment-with-locales';
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-import CachedImage from '../../components/UI/CachedImage';
-import UserAvatar from '../../components/UI/UserAvatar';
-import Colors from './../../constants/Colors';
-import Styles from './../../constants/Styles';
+import Styles from '../../constants/Styles';
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
+import UserAvatar from './UserAvatar';
 
-const ProductItem = ({
-  navigation,
-  itemData,
-  showBackgroundText,
-  isHorizontal,
-  showSmallStatusIcons,
-  onSelect,
-}) => {
-  const isReserved = itemData.status === 'reserverad';
-  const isOrganised = itemData.status === 'ordnad';
-  const isPickedUp = itemData.status === 'hämtad';
-
-  let icon;
-  let bgColor;
-
-  if (isReserved) {
-    icon = 'bookmark';
-    bgColor = Colors.primary;
-  }
-
-  if (isOrganised) {
-    icon = 'star';
-    bgColor = Colors.subtleGreen;
-  }
-
-  if (isPickedUp) {
-    icon = 'checkmark';
-    bgColor = Colors.completed;
-  }
-
-  const relevantDate = itemData.collectedDate
-    ? `Hämtad ${Moment(itemData.collectedDate).locale('sv').format('D MMMM YYYY')}`
-    : itemData.organisedDate
-    ? `Hämtas ${Moment(itemData.organisedDate).locale('sv').format('D MMMM YYYY')}`
-    : itemData.reservedDate
-    ? `Reserverad till ${Moment(itemData.reservedDate).locale('sv').format('D MMMM YYYY')}`
-    : 'Inget relevant datum';
-
+const Goal = ({ navigation, itemData, showBackgroundText, isHorizontal, onSelect }) => {
   return (
     <View style={styles.container}>
       {showBackgroundText ? (
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.date}>
-          {relevantDate}
+          {itemData.date}
         </Text>
       ) : null}
-      <Card style={isHorizontal ? styles.horizontalProduct : styles.product}>
+      <Card style={isHorizontal ? styles.horizontalGoal : styles.goal}>
         <View
           style={{
             position: 'absolute',
@@ -73,47 +32,16 @@ const ProductItem = ({
             }}
           />
         </View>
-        {itemData.location ? <Text style={styles.location}>{itemData.location}</Text> : null}
-        {showSmallStatusIcons ? (
-          <Ionicons
-            style={{
-              position: 'absolute',
-              alignSelf: 'flex-end',
-              textAlign: 'center',
-              zIndex: 100,
-              backgroundColor: bgColor,
-              color: '#fff',
-              width: 30,
-            }}
-            name={icon ? (Platform.OS === 'android' ? `md-${icon}` : `ios-${icon}`) : null}
-            size={23}
-          />
-        ) : null}
 
         <View style={styles.touchable}>
           <TouchableCmp onPress={onSelect} useForeground>
-            <View style={styles.imageContainer}>
-              <CachedImage style={styles.image} uri={itemData.image} />
-            </View>
-            {itemData.priceText && !itemData.price ? (
-              <Text style={styles.price}>{itemData.priceText}</Text>
-            ) : null}
-
-            {itemData.price && !itemData.priceText ? (
-              <Text style={styles.price}>{itemData.price ? itemData.price : 0} kr</Text>
-            ) : null}
+            {itemData.title ? <Text style={styles.price}>{itemData.title}</Text> : null}
           </TouchableCmp>
         </View>
       </Card>
-      <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
-        {itemData.title}
+      <Text numberOfLines={1} ellipsizeMode="tail" style={styles.text}>
+        {itemData.text}
       </Text>
-
-      {showBackgroundText ? (
-        <Text numberOfLines={5} ellipsizeMode="tail" style={styles.backgroundText}>
-          {itemData.background}
-        </Text>
-      ) : null}
     </View>
   );
 };
@@ -124,8 +52,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
   },
-  product: {
-    height: Styles.productItemHeight,
+  goal: {
+    height: Styles.GoalHeight,
     width: '93%',
     margin: '1.5%',
     borderWidth: 0.5,
@@ -136,8 +64,8 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     fontSize: 13,
   },
-  horizontalProduct: {
-    height: Styles.productItemHeight,
+  horizontalGoal: {
+    height: Styles.GoalHeight,
     width: 200,
     marginLeft: 10,
     borderWidth: 0.5,
@@ -220,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductItem;
+export default Goal;

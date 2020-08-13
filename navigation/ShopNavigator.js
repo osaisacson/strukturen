@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import * as authActions from '../store/actions/auth';
-import * as productsActions from '../store/actions/products';
+import * as goalsActions from '../store/actions/goals';
 import * as profilesActions from '../store/actions/profiles';
 import * as projectsActions from '../store/actions/projects';
 import * as proposalsActions from '../store/actions/proposals';
@@ -30,7 +30,7 @@ export const ShopNavigator = () => {
       console.log('Fetching app data.........');
       const allPromises = await Promise.all([
         dispatch(profilesActions.fetchProfiles()),
-        dispatch(productsActions.fetchProducts()),
+        dispatch(goalsActions.fetchGoals()),
         dispatch(projectsActions.fetchProjects()),
         dispatch(proposalsActions.fetchProposals()),
       ]);

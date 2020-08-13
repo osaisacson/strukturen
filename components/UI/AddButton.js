@@ -18,7 +18,7 @@ const AddButton = ({ navigation }) => {
             {
               icon: 'star',
               label: 'Nytt Återbruk',
-              onPress: () => navigation.navigate('EditProduct'),
+              onPress: () => navigation.navigate('EditGoal'),
             },
             {
               icon: 'star',

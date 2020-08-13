@@ -1,50 +1,23 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { Badge } from 'react-native-paper';
 
-import Colors from './../../constants/Colors';
-import ButtonAdd from './ButtonAdd';
+import Colors from '../../constants/Colors';
 import ButtonIcon from './ButtonIcon';
 
-const HeaderTwo = ({
-  icon,
-  title,
-  subTitle,
-  extraSubTitle,
-  indicator,
-  buttonText,
-  buttonOnPress,
-  simpleCount,
-  showAddLink,
-  showNotificationBadge,
-  isSearch,
-}) => {
-  const extraStyle = buttonText ? { maxWidth: '80%' } : { maxWidth: '99%' };
+const AddGoal = ({ title, subTitle, extraSubTitle, itemToAdd }) => {
   return (
     <View style={styles.headerContainer}>
-      <View style={[styles.textSection, extraStyle]}>
+      <View style={styles.textSection}>
         <View style={styles.textAndBadge}>
-          {icon ? icon : null}
           <Text style={styles.contentHeader}>{title}</Text>
-          {simpleCount ? (
-            <Text style={isSearch ? styles.simpleCountForSearch : styles.simpleCount}>
-              {isSearch ? `${simpleCount} Hittade` : `(${simpleCount})`}
-            </Text>
-          ) : null}
-          {showNotificationBadge ? (
-            <Badge style={{ fontWeight: 'bold', marginBottom: 5 }}>{indicator}</Badge>
-          ) : null}
         </View>
         {subTitle ? <Text style={styles.subTitle}>{subTitle}</Text> : null}
         {extraSubTitle ? <Text style={styles.extraSubTitle}>{extraSubTitle}</Text> : null}
       </View>
       <View style={styles.indicatorSection}>
-        {showAddLink ? (
-          <View style={{ alignSelf: 'flex-end', paddingBottom: subTitle ? 20 : 2 }}>
-            <ButtonIcon icon="plus" onSelect={showAddLink} color={Colors.darkPrimary} />
-          </View>
-        ) : null}
-        {buttonText ? <ButtonAdd title={buttonText} onPress={buttonOnPress} /> : null}
+        <View style={{ alignSelf: 'flex-end', paddingBottom: subTitle ? 20 : 2 }}>
+          <ButtonIcon icon="plus" onSelect={itemToAdd} color={Colors.darkPrimary} />
+        </View>
       </View>
     </View>
   );
@@ -101,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeaderTwo;
+export default AddGoal;

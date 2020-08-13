@@ -76,7 +76,7 @@ const EditProfileScreen = (props) => {
             formState.inputValues.email
           )
         );
-        props.navigation.navigate('ProductDetail', { detailId: firebaseId });
+        props.navigation.navigate('GoalDetail', { detailId: firebaseId });
         setIsLoading(false);
       } else {
         await dispatch(

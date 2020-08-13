@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import CachedImage from './CachedImage';
-import ProductStatusCopy from './ProductStatusCopy';
+import GoalStatusCopy from './GoalStatusCopy';
 import TouchableCmp from './TouchableCmp';
 
 const UserActionItem = ({ navigation, detailPath, item, style }) => {
@@ -30,7 +30,7 @@ const UserActionItem = ({ navigation, detailPath, item, style }) => {
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.title}>{item.title}</Text>
-            <ProductStatusCopy essentialStatusOnly selectedProduct={item} />
+            <GoalStatusCopy essentialStatusOnly selectedGoal={item} />
           </View>
         </View>
         <Entypo name="chevron-thin-right" size={20} color="#c9c9c9" />

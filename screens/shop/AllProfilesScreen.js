@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import EmptyState from '../../components/UI/EmptyState';
 import Error from '../../components/UI/Error';
-import HeaderTwo from '../../components/UI/HeaderTwo';
 import Loader from '../../components/UI/Loader';
 import RoundItem from '../../components/UI/RoundItem';
 import SearchBar from '../../components/UI/SearchBar';
@@ -105,13 +104,6 @@ const AllProfilesScreen = (props) => {
             <Divider />
           </View>
         )}
-        ListHeaderComponent={
-          <HeaderTwo
-            title="Alla användare"
-            simpleCount={filteredProfiles.length}
-            indicator={filteredProfiles.length ? filteredProfiles.length : 0}
-          />
-        }
       />
     </View>
   );

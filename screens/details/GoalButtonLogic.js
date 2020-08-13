@@ -11,21 +11,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import AnimatedButton from '../../components/UI/AnimatedButton';
 import ButtonAction from '../../components/UI/ButtonAction';
 import HeaderThree from '../../components/UI/HeaderThree';
-import HorizontalScrollContainer from '../../components/UI/HorizontalScrollContainer';
 import Loader from '../../components/UI/Loader';
-import ProductStatusCopy from '../../components/UI/ProductStatusCopy';
+import GoalStatusCopy from '../../components/UI/GoalStatusCopy';
 import RoundItem from '../../components/UI/RoundItem';
 import SmallRoundItem from '../../components/UI/SmallRoundItem';
 import UserAvatar from '../../components/UI/UserAvatar';
 import { detailStyles } from '../../components/wrappers/DetailWrapper';
 import Colors from '../../constants/Colors';
-import * as productsActions from '../../store/actions/products';
+import * as goalsActions from '../../store/actions/goals';
 
-const ProductButtonLogic = (props) => {
+const GoalButtonLogic = (props) => {
   const dispatch = useDispatch();
   const colorScheme = useColorScheme();
 
-  //Get product and owner id from navigation params (from parent screen) and current user id from state
+  //Get goal and owner id from navigation params (from parent screen) and current user id from state
   const currentProfile = useSelector((state) => state.profiles.userProfile || {});
   const loggedInUserId = currentProfile.profileId;
 
@@ -36,7 +35,7 @@ const ProductButtonLogic = (props) => {
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [suggestedDateLocal, setSuggestedDateLocal] = useState();
 
-  //Get all projects from state, and then return the ones that matches the id of the current product
+  //Get all projects from state, and then return the ones that matches the id of the current goal
   const availableProjects = useSelector((state) => state.projects.availableProjects);
   const userProjects = availableProjects.filter((project) => project.ownerId === loggedInUserId);
 
@@ -55,9 +54,9 @@ const ProductButtonLogic = (props) => {
     sellerAgreed,
     buyerAgreed,
     pickupDetails,
-  } = props.selectedProduct;
+  } = props.selectedGoal;
 
-  //Check status of product and privileges of user
+  //Check status of goal and privileges of user
   const isReserved = status === 'reserverad';
   const isOrganised = status === 'ordnad';
   const isPickedUp = status === 'hämtad';
@@ -105,7 +104,7 @@ const ProductButtonLogic = (props) => {
 
   const associatedProject = useSelector((state) => state.projects.availableProjects);
 
-  const projectForProduct = associatedProject.find((proj) => proj.id === projectId);
+  const projectForGoal = associatedProject.find((proj) => proj.id === projectId);
 
   const handleTimePicker = (date) => {
     setSuggestedDateLocal(date);
@@ -128,7 +127,7 @@ const ProductButtonLogic = (props) => {
           text: 'Jag förstår',
           style: 'destructive',
           onPress: () => {
-            dispatch(productsActions.changeProductStatus(id, 'reserverad', checkedProjectId));
+            dispatch(goalsActions.changeGoalStatus(id, 'reserverad', checkedProjectId));
             setShowOptions(true);
             setShowUserProjects(false);
           },
@@ -160,7 +159,7 @@ const ProductButtonLogic = (props) => {
           style: 'destructive',
           onPress: () => {
             setIsLoading(true);
-            dispatch(productsActions.unReserveProduct(id)).then(setIsLoading(false));
+            dispatch(goalsActions.unReserveGoal(id)).then(setIsLoading(false));
           },
         },
       ]
@@ -182,12 +181,7 @@ const ProductButtonLogic = (props) => {
           onPress: () => {
             setIsLoading(true);
             dispatch(
-              productsActions.changeProductStatus(
-                id,
-                'reserverad',
-                checkedProjectId,
-                prevReservedUser
-              ) //by default resets the date to expire in four days, since the status is 'reserved'
+              goalsActions.changeGoalStatus(id, 'reserverad', checkedProjectId, prevReservedUser) //by default resets the date to expire in four days, since the status is 'reserved'
             ).then(setIsLoading(false));
             setSuggestedDateLocal();
             setShowUserProjects(false);
@@ -216,15 +210,15 @@ const ProductButtonLogic = (props) => {
           style: 'destructive',
           onPress: () => {
             dispatch(
-              productsActions.changeProductStatus(
+              goalsActions.changeGoalStatus(
                 id,
                 'ordnas',
                 checkedProjectId,
                 reservedUserId,
-                dateTime //sets product.suggestedDate
+                dateTime //sets goal.suggestedDate
               )
             );
-            dispatch(productsActions.changeProductAgreement(id, sAgreed, bAgreed));
+            dispatch(goalsActions.changeGoalAgreement(id, sAgreed, bAgreed));
             hideTimePicker();
             setShowUserProjects(false);
           },
@@ -246,12 +240,12 @@ const ProductButtonLogic = (props) => {
           style: 'destructive',
           onPress: () => {
             dispatch(
-              productsActions.changeProductStatus(
+              goalsActions.changeGoalStatus(
                 id,
                 'ordnad',
                 checkedProjectId,
                 reservedUserId,
-                dateTime //if status is 'ordnad', set this to be product.collectingDate
+                dateTime //if status is 'ordnad', set this to be goal.collectingDate
               )
             );
             setShowUserProjects(false);
@@ -271,9 +265,7 @@ const ProductButtonLogic = (props) => {
           text: 'Japp, den är hämtad!',
           style: 'destructive',
           onPress: () => {
-            dispatch(
-              productsActions.changeProductStatus(id, 'hämtad', projectId, collectingUserId)
-            );
+            dispatch(goalsActions.changeGoalStatus(id, 'hämtad', projectId, collectingUserId));
             props.navigation.goBack();
           },
         },
@@ -322,12 +314,12 @@ const ProductButtonLogic = (props) => {
                 <Text style={styles.smallText}>köpare</Text>
               </View>
               <HeaderAvatar profileId={receivingId} navigation={props.navigation} />
-              {projectForProduct ? (
+              {projectForGoal ? (
                 <>
                   <View style={{ marginLeft: -20, zIndex: -1 }}>
                     <SmallRoundItem
                       detailPath="ProjectDetail"
-                      item={projectForProduct}
+                      item={projectForGoal}
                       navigation={props.navigation}
                     />
                   </View>
@@ -349,10 +341,7 @@ const ProductButtonLogic = (props) => {
           padding: 5,
         }}>
         <View>
-          <ProductStatusCopy
-            style={{ textAlign: 'center' }}
-            selectedProduct={props.selectedProduct}
-          />
+          <GoalStatusCopy style={{ textAlign: 'center' }} selectedGoal={props.selectedGoal} />
           {!isPickedUp ? <AnimatedButton onPress={toggleShowOptions} text={buttonCopy} /> : null}
         </View>
         {/* When trying to reserve, open this up for selection of associated project */}
@@ -362,30 +351,6 @@ const ProductButtonLogic = (props) => {
               text="Vilket projekt ska återbruket användas i?"
               style={detailStyles.centeredHeader}
             />
-
-            <HorizontalScrollContainer>
-              <RoundItem
-                itemData={{
-                  image: './../../assets/avatar-placeholder-image.png',
-                  title: 'Inget projekt',
-                }}
-                key="000"
-                isHorizontal
-                onSelect={() => {
-                  reserveHandler('000');
-                }}
-              />
-              {userProjects.map((item) => (
-                <RoundItem
-                  itemData={item}
-                  key={item.id}
-                  isHorizontal
-                  onSelect={() => {
-                    reserveHandler(item.id);
-                  }}
-                />
-              ))}
-            </HorizontalScrollContainer>
           </>
         ) : null}
 
@@ -423,7 +388,7 @@ const ProductButtonLogic = (props) => {
               ) : null}
             </View>
 
-            {/* Show a prompt if the product has not yet sorted logistics, and if the viewer is any of the involved parties  */}
+            {/* Show a prompt if the goal has not yet sorted logistics, and if the viewer is any of the involved parties  */}
             {isReserved && isSellerOrBuyer ? (
               <>
                 {!suggestedDate ? (
@@ -671,4 +636,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductButtonLogic;
+export default GoalButtonLogic;

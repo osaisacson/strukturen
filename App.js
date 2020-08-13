@@ -15,14 +15,14 @@ import env from './env.js';
 import AppNavigator from './navigation/AppNavigator';
 import checkExpiredToken from './store/middlewares/checkExpiredToken';
 import authReducer from './store/reducers/auth';
-import productsReducer from './store/reducers/products';
+import goalsReducer from './store/reducers/goals';
 import profilesReducer from './store/reducers/profiles';
 import projectsReducer from './store/reducers/projects';
 import proposalsReducer from './store/reducers/proposals';
 
 //Combines all the reducers which manages our redux state. This is where we get our current state from in the child screens.
 const rootReducer = combineReducers({
-  products: productsReducer,
+  goals: goalsReducer,
   projects: projectsReducer,
   profiles: profilesReducer,
   proposals: proposalsReducer,

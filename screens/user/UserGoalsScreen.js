@@ -4,41 +4,40 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import EmptyState from '../../components/UI/EmptyState';
 import Error from '../../components/UI/Error';
-import HeaderTwo from '../../components/UI/HeaderTwo';
+import Goal from '../../components/UI/Goal';
 import Loader from '../../components/UI/Loader';
-import ProductItem from '../../components/UI/ProductItem';
 import SaferArea from '../../components/UI/SaferArea';
 import SearchBar from '../../components/UI/SearchBar';
-import * as productsActions from '../../store/actions/products';
+import * as goalsActions from '../../store/actions/goals';
 
-const UserProductsScreen = (props) => {
-  //Get user products from state
-  const availableProducts = useSelector((state) => state.products.availableProducts);
+const UserGoalsScreen = (props) => {
+  //Get user goals from state
+  const availableGoals = useSelector((state) => state.goals.availableGoals);
   const currentProfile = useSelector((state) => state.profiles.userProfile || {});
   const loggedInUserId = currentProfile.profileId;
-  const userProducts = availableProducts.filter((prod) => prod.ownerId === loggedInUserId);
+  const userGoals = availableGoals.filter((prod) => prod.ownerId === loggedInUserId);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState();
 
-  //Prepare for changing the rendered products on search
-  const [renderedProducts, setRenderedProducts] = useState(userProducts);
+  //Prepare for changing the rendered goals on search
+  const [renderedGoals, setRenderedGoals] = useState(userGoals);
   const [searchQuery, setSearchQuery] = useState('');
 
-  //Sort products by date
-  const productsSorted = renderedProducts.sort(function (a, b) {
+  //Sort goals by date
+  const goalsSorted = renderedGoals.sort(function (a, b) {
     return new Date(b.date) - new Date(a.date);
   });
 
   const dispatch = useDispatch();
 
-  const loadProducts = useCallback(async () => {
+  const loadGoals = useCallback(async () => {
     setError(null);
     setIsRefreshing(true);
     try {
-      console.log('UserProductsScreen: fetching Products');
-      dispatch(productsActions.fetchProducts());
+      console.log('UserGoalsScreen: fetching Goals');
+      dispatch(goalsActions.fetchGoals());
     } catch (err) {
       setError(err.message);
     }
@@ -46,17 +45,17 @@ const UserProductsScreen = (props) => {
   }, [dispatch, setIsLoading, setError]);
 
   const searchHandler = (text) => {
-    const newData = renderedProducts.filter((item) => {
+    const newData = renderedGoals.filter((item) => {
       const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
-    setRenderedProducts(text.length ? newData : userProducts);
+    setRenderedGoals(text.length ? newData : userGoals);
     setSearchQuery(text.length ? text : '');
   };
 
   const selectItemHandler = (id, ownerId, title) => {
-    props.navigation.navigate('ProductDetail', {
+    props.navigation.navigate('GoalDetail', {
       detailId: id,
       ownerId,
       detailTitle: title,
@@ -64,14 +63,14 @@ const UserProductsScreen = (props) => {
   };
 
   if (error) {
-    return <Error actionOnPress={loadProducts} />;
+    return <Error actionOnPress={loadGoals} />;
   }
 
   if (isLoading) {
     return <Loader />;
   }
 
-  if (!isLoading && userProducts.length === 0) {
+  if (!isLoading && userGoals.length === 0) {
     return <EmptyState text="Inga produkter ännu, prova lägga till några." />;
   }
 
@@ -86,12 +85,12 @@ const UserProductsScreen = (props) => {
       <FlatList
         numColumns={2}
         initialNumToRender={12}
-        onRefresh={loadProducts}
+        onRefresh={loadGoals}
         refreshing={isRefreshing}
-        data={productsSorted}
+        data={goalsSorted}
         keyExtractor={(item) => item.id}
         renderItem={(itemData) => (
-          <ProductItem
+          <Goal
             navigation={props.navigation}
             showSmallStatusIcons
             itemData={itemData.item}
@@ -100,17 +99,9 @@ const UserProductsScreen = (props) => {
             }}
           />
         )}
-        ListHeaderComponent={
-          <HeaderTwo
-            isSearch
-            simpleCount={productsSorted.length}
-            showAddLink={() => props.navigation.navigate('EditProduct')}
-            indicator={productsSorted.length ? productsSorted.length : 0}
-          />
-        }
       />
     </SaferArea>
   );
 };
 
-export default UserProductsScreen;
+export default UserGoalsScreen;

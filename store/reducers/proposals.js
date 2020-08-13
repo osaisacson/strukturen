@@ -82,7 +82,7 @@ export default (state = initialState, action) => {
         state.availableProposals[availableProposalsIndexCPS]
       );
 
-      const updatedProductCPS = new Proposal( //Whenever we do a new proposal we have to pass the full params to match model
+      const updatedGoalCPS = new Proposal( //Whenever we do a new proposal we have to pass the full params to match model
         action.pid,
         state.availableProposals[availableProposalsIndexCPS].ownerId,
         state.availableProposals[availableProposalsIndexCPS].projectId,
@@ -95,18 +95,18 @@ export default (state = initialState, action) => {
 
       console.log(
         'store/reducers/proposals/CHANGE_PROPOSAL_STATUS, updated proposal: ',
-        updatedProductCPS
+        updatedGoalCPS
       );
       //Update state
       const updatedAvailableProposalsCPS = updateCollection(
         state.availableProposals,
         action.pid,
-        updatedProductCPS
+        updatedGoalCPS
       );
       const updatedUserProposalsCPS = updateCollection(
         state.userProposals,
         action.pid,
-        updatedProductCPS
+        updatedGoalCPS
       );
 
       return {
