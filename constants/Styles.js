@@ -2,8 +2,10 @@ export default {
   defaultFontFamily: 'bowlby-bold',
   borderRadius: 5,
   leftRight: 15,
-  goalItemHeight: 200,
-  roundItemHeight: 190,
-  textItemHeight: 90,
-  largeImageItemHeight: 230,
+
+  homeMargin: 10,
+  goalHeight: 110,
+  meHeight: 220,
+  amTop: 110,
+  pmTop: 10 + 220 + 10 + 110 + 10 + 10,
 };

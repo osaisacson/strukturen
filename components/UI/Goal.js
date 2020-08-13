@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
+import Styles from '../../constants/Styles';
 
 const Goal = ({ navigation, itemData }) => {
   const onSelect = () => navigation.navigate('EditGoal');
@@ -30,9 +31,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   goal: {
-    height: 100,
-    width: 100,
-    marginLeft: 10,
+    height: Styles.goalHeight,
+    width: Styles.goalHeight,
+    marginLeft: Styles.homeMargin,
     borderWidth: 0.5,
     borderColor: '#ddd',
   },

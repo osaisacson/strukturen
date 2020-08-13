@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 
 import Goal from '../UI/Goal';
+import Styles from './../../constants/Styles';
 
 const HorizontalScroll = ({ scrollData, renderedItemType, navigation }) => {
   //Set defaults
@@ -12,7 +13,7 @@ const HorizontalScroll = ({ scrollData, renderedItemType, navigation }) => {
   //Change component to render, height of scroll and path to go to on click based on which type we want to render.
   if (renderedItemType === 'goals') {
     RenderedComponent = Goal;
-    scrollHeight = 100;
+    scrollHeight = Styles.goalHeight + Styles.homeMargin + Styles.homeMargin;
     detailPath = 'GoalDetail';
   }
 
