@@ -8,7 +8,7 @@ import Styles from '../constants/Styles';
 
 export const defaultNavOptions = {
   headerStyle: {
-    backgroundColor: Colors.darkPrimary,
+    backgroundColor: Colors.primary,
   },
   headerTitleStyle: {
     fontFamily: Styles.defaultFontFamily,
@@ -17,7 +17,7 @@ export const defaultNavOptions = {
   headerBackTitleStyle: {
     fontFamily: 'roboto-regular',
   },
-  headerTintColor: '#fff',
+  headerTintColor: Colors.primaryAccent,
 };
 
 export const defaultMainPageOptions = (navData) => {
@@ -63,7 +63,7 @@ export const detailHeaderForTabs = (navData) => {
 export const topStackHeaderForTabs = (navData) => {
   return {
     headerStyle: {
-      backgroundColor: Colors.darkPrimary,
+      backgroundColor: Colors.primary,
     },
     headerTitleStyle: {
       fontFamily: 'bowlby-bold',
@@ -72,7 +72,7 @@ export const topStackHeaderForTabs = (navData) => {
     headerBackTitleStyle: {
       fontFamily: 'roboto-regular',
     },
-    headerTintColor: '#fff',
+    headerTintColor: Colors.primaryAccent,
     headerRight: () => (
       <View style={styles.avatarContainer}>
         <Item
@@ -116,8 +116,8 @@ export const mainPageOptionsNoUser = () => {
     //     badge={2} //TBD: In-app messaging - should show nr of unanswered messages
     //     style={{ marginRight: 30, marginTop: 5 }}
     //     icon="email"
-    //     color={Colors.darkPrimary}
-    //     borderColor={Colors.darkPrimary}
+    //     color={Colors.primary}
+    //     borderColor={Colors.primary}
     //     size={24}
     //   />
     // ),

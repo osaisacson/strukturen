@@ -197,7 +197,7 @@ const AuthScreen = () => {
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                  color={isSignup ? Colors.darkPrimary : Colors.primary}
+                  color={isSignup ? Colors.primary : Colors.lightPrimary}
                   mode="contained"
                   style={{
                     width: '60%',

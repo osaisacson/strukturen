@@ -6,17 +6,8 @@ export const FormFieldWrapper = (props) => {
 };
 
 export const formStyles = StyleSheet.create({
-  centered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   formControl: {
     width: '100%',
-  },
-  sectionLabel: {
-    marginTop: 10,
-    marginLeft: 10,
   },
   input: {
     borderRadius: 5,

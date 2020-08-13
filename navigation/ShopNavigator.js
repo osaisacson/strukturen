@@ -12,7 +12,6 @@ import * as authActions from '../store/actions/auth';
 import * as goalsActions from '../store/actions/goals';
 import * as profilesActions from '../store/actions/profiles';
 import { AboutNavigator } from './AboutNavigator';
-import { ProfilesNavigator } from './ProfilesNavigator';
 import { TabNavigator } from './TabNavigator';
 
 const ShopDrawerNavigator = createDrawerNavigator();
@@ -97,13 +96,6 @@ export const ShopNavigator = () => {
           drawerIcon: (props) => (
             <MaterialCommunityIcons name="home" size={23} color={props.color} />
           ),
-        }}
-      />
-      <ShopDrawerNavigator.Screen
-        name="Användare"
-        component={ProfilesNavigator}
-        options={{
-          drawerIcon: (props) => <FontAwesome name="users" size={23} color={props.color} />,
         }}
       />
       <ShopDrawerNavigator.Screen

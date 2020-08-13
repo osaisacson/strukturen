@@ -16,10 +16,6 @@ const HorizontalScroll = ({ scrollData, renderedItemType, navigation }) => {
     detailPath = 'GoalDetail';
   }
 
-  if (!scrollData.length) {
-    scrollHeight = 0;
-  }
-
   const selectItemHandler = (id, ownerId, title) => {
     navigation.navigate(detailPath, {
       detailId: id,
@@ -49,7 +45,6 @@ const HorizontalScroll = ({ scrollData, renderedItemType, navigation }) => {
                     navigation={navigation}
                     itemData={item}
                     key={item.id}
-                    isHorizontal
                     onSelect={() => {
                       selectItemHandler(item.id, item.ownerId, item.title);
                     }}

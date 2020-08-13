@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const EmptyState = ({ style, text, children }) => {
   return (
-    <View style={{ ...styles.container, ...style }}>
+    <View style={styles.container}>
       <Text style={styles.text}>
         {text}
         {children}

@@ -15,7 +15,7 @@ export const TabNavigator = ({ navigation }) => {
       shifting
       activeColor={Colors.lightPrimary}
       inactiveColor={Colors.lightPrimary}
-      barStyle={{ backgroundColor: Colors.darkPrimary }}>
+      barStyle={{ backgroundColor: Colors.primary }}>
       <TabStackNavigator.Screen
         unmountOnBlur
         name="Strukturen"

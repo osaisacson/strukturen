@@ -12,7 +12,7 @@ const AboutScreen = () => {
         <Image
           resizeMode="contain"
           style={styles.logoLarge}
-          source={require('./../assets/splash.png')}
+          source={require('./../assets/icon.png')}
         />
         <Paragraph style={{ ...styles.paragraph, textAlign: 'center' }}>
           Strukturen är skapad 2020 av Ratatosk med stöd av en vilja av schtål.
