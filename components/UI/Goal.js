@@ -1,24 +1,33 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import Colors from '../../constants/Colors';
 import Styles from '../../constants/Styles';
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
 
 const Goal = ({ goal, isYear, isMonth, isDay }) => {
-  const { title, text, isDone, day } = goal;
+  const { year, month, day, weekDay, isDone } = goal;
 
+  let itemColor;
   let fontSize;
+  let title;
 
   if (isYear) {
+    title = year;
+    itemColor = Colors.year;
     fontSize = 33;
   }
 
   if (isMonth) {
-    fontSize = 40;
+    title = month;
+    itemColor = Colors.month;
+    fontSize = 35;
   }
 
   if (isDay) {
+    title = day;
+    itemColor = Colors.day;
     fontSize = 50;
   }
 
@@ -27,19 +36,10 @@ const Goal = ({ goal, isYear, isMonth, isDay }) => {
       <Card style={styles.goal}>
         <View style={styles.touchable}>
           <TouchableCmp useForeground>
-            {isDay ? (
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontSize: 11,
-                  marginBottom: -10,
-                  fontFamily: Styles.defaultFontFamily,
-                }}>
-                {day}
-              </Text>
-            ) : null}
+            {isDay ? <Text style={styles.weekDay}>{weekDay}</Text> : null}
             <Text
               style={{
+                color: itemColor,
                 fontSize,
                 fontFamily: Styles.defaultFontFamily,
               }}>
@@ -53,6 +53,13 @@ const Goal = ({ goal, isYear, isMonth, isDay }) => {
 };
 
 const styles = StyleSheet.create({
+  weekDay: {
+    color: Colors.day,
+    textAlign: 'center',
+    fontSize: 11,
+    marginBottom: -10,
+    fontFamily: Styles.defaultFontFamily,
+  },
   container: {
     flex: 1,
     flexDirection: 'column',

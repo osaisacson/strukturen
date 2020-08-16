@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
+import Colors from './../../constants/Colors';
+
 const Card = ({ style, children }) => {
   return <View style={{ ...styles.card, ...style }}>{children}</View>;
 };
@@ -13,7 +15,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 2, //Because shadow only work on iOS, elevation is same thing but for android.
     borderRadius: 5,
-    backgroundColor: 'rgba(255,255,255,0.7)',
+    backgroundColor: Colors.cardBgColor,
   },
 });
 

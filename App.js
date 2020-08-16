@@ -18,6 +18,8 @@ import authReducer from './store/reducers/auth';
 import goalsReducer from './store/reducers/goals';
 import profilesReducer from './store/reducers/profiles';
 
+import GlobalContext from './context/GlobalState';
+
 //Combines all the reducers which manages our redux state. This is where we get our current state from in the child screens.
 const rootReducer = combineReducers({
   goals: goalsReducer,
@@ -52,8 +54,8 @@ const App = () => {
     try {
       console.log('Initializing data loading.........');
       const allPromises = await Promise.all([
-        // Load assets
-        Asset.loadAsync([require('./assets/userBackground.png')]),
+        // // Load assets
+        // Asset.loadAsync([require('./assets/userBackground.png')]),
         // Load fonts
         Font.loadAsync({
           'bowlby-bold': require('./assets/fonts/BowlbyOneSC-Regular.ttf'),

@@ -127,7 +127,7 @@ const AuthScreen = () => {
         <ImageBackground
           source={{
             uri:
-              'https://images.unsplash.com/photo-1496439653932-606caa506e0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2011&q=80',
+              'https://images.unsplash.com/photo-1580715911279-6bc35abc2e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2780&q=80',
           }}
           resizeMode="cover"
           style={styles.backgroundImage}>
@@ -175,7 +175,7 @@ const AuthScreen = () => {
               />
               <View style={styles.buttonContainer}>
                 {isLoading ? (
-                  <ActivityIndicator size="small" color={Colors.primary} />
+                  <ActivityIndicator size="small" color={Colors.month} />
                 ) : (
                   <Button
                     color="#000"
@@ -183,12 +183,14 @@ const AuthScreen = () => {
                     contentStyle={{
                       justifyContent: 'center',
                       borderWidth: 0.25,
+                      borderColor: !isSignup ? Colors.month : Colors.year,
                     }}
                     labelStyle={{
                       paddingTop: 13,
                       paddingBottom: 9,
                       fontFamily: Styles.defaultFontFamily,
-                      fontSize: 28,
+                      fontSize: 15,
+                      color: !isSignup ? Colors.month : Colors.year,
                     }}
                     onPress={authHandler}>
                     {isSignup ? 'Gå med' : 'Logga in'}
@@ -197,16 +199,17 @@ const AuthScreen = () => {
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                  color={isSignup ? Colors.primary : Colors.lightPrimary}
+                  color={!isSignup ? Colors.month : Colors.year}
                   mode="contained"
                   style={{
                     width: '60%',
                     alignSelf: 'center',
                   }}
                   labelStyle={{
+                    color: '#fff',
                     paddingTop: 2,
                     fontFamily: Styles.defaultFontFamily,
-                    fontSize: 12,
+                    fontSize: 9,
                   }}
                   compact
                   onPress={() => {
@@ -254,7 +257,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 15,
   },
-
   buttonContainer: {
     marginTop: 10,
   },
