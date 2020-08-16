@@ -6,10 +6,9 @@ export default {
   defaultFontFamily: 'bowlby-bold',
   borderRadius: 5,
   leftRight: 15,
-
-  homeMargin: homeMargin,
-  goalHeight: goalHeight,
-  meHeight: meHeight,
+  homeMargin,
+  goalHeight,
+  meHeight,
   amTop: goalHeight + homeMargin,
   pmTop: meHeight + homeMargin + goalHeight + homeMargin,
 };

@@ -72,9 +72,9 @@ const HomeScreen = (props) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}>
-        <Goal goal={{ title: '2020', text: 'Göra så mycket bättre' }} key="1" />
-        <Goal goal={{ title: 'Aug', text: 'Starta företaget' }} key="2" />
-        <Goal goal={{ title: 'v.2', text: 'Ta beslut' }} key="3" />
+        <Goal isYear goal={{ title: '2020', text: 'Göra så mycket bättre' }} key="1" />
+        <Goal isMonth goal={{ title: 'Aug', text: 'Starta företaget' }} key="2" />
+        <Goal isDay goal={{ title: '12', text: 'Ta beslut', day: 'Tuesday' }} key="3" />
       </ScrollView>
       <Card
         style={{

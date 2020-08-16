@@ -5,15 +5,46 @@ import Styles from '../../constants/Styles';
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
 
-const Goal = ({ goal }) => {
-  const { title, text, isDone } = goal;
+const Goal = ({ goal, isYear, isMonth, isDay }) => {
+  const { title, text, isDone, day } = goal;
+
+  let fontSize;
+
+  if (isYear) {
+    fontSize = 33;
+  }
+
+  if (isMonth) {
+    fontSize = 40;
+  }
+
+  if (isDay) {
+    fontSize = 50;
+  }
 
   return (
     <View style={styles.container}>
       <Card style={styles.goal}>
         <View style={styles.touchable}>
           <TouchableCmp useForeground>
-            <Text style={{ fontFamily: Styles.defaultFontFamily }}>{title}</Text>
+            {isDay ? (
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 11,
+                  marginBottom: -10,
+                  fontFamily: Styles.defaultFontFamily,
+                }}>
+                {day}
+              </Text>
+            ) : null}
+            <Text
+              style={{
+                fontSize,
+                fontFamily: Styles.defaultFontFamily,
+              }}>
+              {title}
+            </Text>
           </TouchableCmp>
         </View>
       </Card>
@@ -35,6 +66,9 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
   },
   touchable: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 5,
     overflow: 'hidden',
   },
