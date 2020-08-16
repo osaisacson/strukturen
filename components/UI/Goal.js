@@ -5,25 +5,15 @@ import Styles from '../../constants/Styles';
 import Card from './Card';
 import TouchableCmp from './TouchableCmp';
 
-const Goal = ({ navigation, itemData, getData }) => {
-  const onSelect = () => navigation.navigate('EditGoal');
-
-  const handleTextChange = (text) => {
-    setShownText(text);
-  };
-
-  const sendData = (text) => {
-    getData(text);
-  };
-
-  const { title, text } = itemData;
+const Goal = ({ goal }) => {
+  const { title, text, isDone } = goal;
 
   return (
     <View style={styles.container}>
       <Card style={styles.goal}>
         <View style={styles.touchable}>
-          <TouchableCmp onPress={sendData(text)} useForeground>
-            {title ? <Text style={{ fontFamily: Styles.defaultFontFamily }}>{title}</Text> : null}
+          <TouchableCmp useForeground>
+            <Text style={{ fontFamily: Styles.defaultFontFamily }}>{title}</Text>
           </TouchableCmp>
         </View>
       </Card>

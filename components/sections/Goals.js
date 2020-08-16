@@ -2,9 +2,9 @@ import React, { useState, useCallback } from 'react';
 import { FlatList, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Goal from '../../components/UI/Goal';
-import Error from '../../components/states/Error';
-import Loader from '../../components/states/Loader';
+import Goal from '../UI/Goal';
+import Error from '../states/Error';
+import Loader from '../states/Loader';
 import * as goalsActions from '../../store/actions/goals';
 
 const GoalsScreen = (props) => {
@@ -30,12 +30,6 @@ const GoalsScreen = (props) => {
     setIsRefreshing(false);
   }, [dispatch, setIsLoading, setError]);
 
-  const sortedGoals = goals.sort(function (a, b) {
-    a = new Date(a.date);
-    b = new Date(b.date);
-    return a > b ? -1 : a < b ? 1 : 0;
-  });
-
   const selectItemHandler = (id, ownerId, title) => {
     props.navigation.navigate('GoalDetail', {
       detailId: id,
@@ -59,7 +53,7 @@ const GoalsScreen = (props) => {
         initialNumToRender={12}
         onRefresh={loadGoals}
         refreshing={isRefreshing}
-        data={sortedGoals}
+        data={goals}
         keyExtractor={(item) => item.id}
         renderItem={(itemData) => (
           <Goal

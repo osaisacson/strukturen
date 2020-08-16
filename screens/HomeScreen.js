@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { IconButton, Text } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 import Card from '../components/UI/Card';
-import HorizontalScroll from '../components/wrappers/HorizontalScroll';
+import Goal from '../components/UI/Goal';
 import Colors from '../constants/Colors';
 import Styles from '../constants/Styles';
 
@@ -48,7 +48,7 @@ const HomeScreen = (props) => {
       <Card
         style={{
           position: 'absolute',
-          right: Styles.homeMargin,
+          left: Styles.meHeight + Styles.homeMargin,
           top: Styles.amTop,
           margin: Styles.homeMargin,
           padding: 10,
@@ -65,11 +65,21 @@ const HomeScreen = (props) => {
           AM
         </Text>
       </Card>
-      <HorizontalScroll getData={getData} scrollData={userGoals} renderedItemType="goals" />
+      <ScrollView
+        style={{
+          height: Styles.homeMargin + Styles.goalHeight + Styles.homeMargin,
+        }}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        scrollEventThrottle={16}>
+        <Goal goal={{ title: '2020', text: 'Göra så mycket bättre' }} key="1" />
+        <Goal goal={{ title: 'Aug', text: 'Starta företaget' }} key="2" />
+        <Goal goal={{ title: 'v.2', text: 'Ta beslut' }} key="3" />
+      </ScrollView>
       <Card
         style={{
           position: 'absolute',
-          right: Styles.homeMargin,
+          left: Styles.meHeight + Styles.homeMargin,
           top: Styles.pmTop,
           margin: Styles.homeMargin,
           padding: 10,

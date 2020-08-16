@@ -1,11 +1,15 @@
+const homeMargin = 15;
+const goalHeight = 115;
+const meHeight = goalHeight + goalHeight + homeMargin;
+
 export default {
   defaultFontFamily: 'bowlby-bold',
   borderRadius: 5,
   leftRight: 15,
 
-  homeMargin: 10,
-  goalHeight: 110,
-  meHeight: 220,
-  amTop: 110,
-  pmTop: 10 + 220 + 10 + 110 + 10 + 10,
+  homeMargin: homeMargin,
+  goalHeight: goalHeight,
+  meHeight: meHeight,
+  amTop: goalHeight + homeMargin,
+  pmTop: meHeight + homeMargin + goalHeight + homeMargin,
 };
