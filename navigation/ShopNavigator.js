@@ -62,7 +62,7 @@ export const ShopNavigator = () => {
                 <DrawerItemList {...props} />
                 <Divider style={{ marginTop: 10, backgroundColor: 'grey' }} />
                 <Button
-                  color="#666"
+                  color={Colors.primary}
                   mode="contained"
                   style={{
                     marginTop: 200,
@@ -71,8 +71,9 @@ export const ShopNavigator = () => {
                   }}
                   labelStyle={{
                     paddingTop: 2,
+                    color: Colors.primaryAccent,
                     fontFamily: Styles.defaultFontFamily,
-                    fontSize: 14,
+                    fontSize: 11,
                   }}
                   compact
                   onPress={() => {

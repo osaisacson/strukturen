@@ -75,48 +75,50 @@ const HomeScreen = (props) => {
   };
 
   return (
-    <View>
-      <Card style={{ ...styles.centered, ...styles.meSection }}>
-        <Image
-          source={{
-            uri:
-              'https://images.unsplash.com/photo-1580715911279-6bc35abc2e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2780&q=80',
-          }}
-          style={{
-            position: 'absolute',
-            height: Styles.meHeight,
-            width: Styles.meHeight,
-          }}
-        />
-        <Text style={styles.meText}>Me</Text>
-      </Card>
+    <>
       <View style={styles.ringContainer}>
         <Rings />
       </View>
-      <Card style={{ top: Styles.amTop, ...styles.ampmSection }}>
-        <Text style={styles.ampmText}>AM</Text>
-      </Card>
-      <ScrollView
-        style={Styles.scrollView}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}>
-        <Goal isYear goal={currentYearGoal ? currentYearGoal : {}} key="1" />
-        <Goal isMonth goal={currentMonthGoal ? currentMonthGoal : {}} key="2" />
-        <Goal isDay goal={currentDayGoal ? currentDayGoal : {}} key="3" />
-      </ScrollView>
-      <Card style={{ top: Styles.pmTop, ...styles.ampmSection }}>
-        <Text style={styles.ampmText}>PM</Text>
-      </Card>
-      <IconButton
-        style={styles.settingsButton}
-        icon="settings"
-        color={Colors.primary}
-        size={20}
-        onPress={editProfileHandler}
-      />
-      <Text style={styles.detailText}>{detailText}</Text>
-    </View>
+      <View>
+        <Card style={{ ...styles.centered, ...styles.meSection }}>
+          <Image
+            source={{
+              uri:
+                'https://images.unsplash.com/photo-1580715911279-6bc35abc2e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2780&q=80',
+            }}
+            style={{
+              position: 'absolute',
+              height: Styles.meHeight,
+              width: Styles.meHeight,
+            }}
+          />
+          <Text style={styles.meText}>Me</Text>
+        </Card>
+        <Card style={{ top: Styles.amTop, ...styles.ampmSection }}>
+          <Text style={styles.ampmText}>AM</Text>
+        </Card>
+        <ScrollView
+          style={Styles.scrollView}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}>
+          <Goal isYear goal={currentYearGoal ? currentYearGoal : {}} key="1" />
+          <Goal isMonth goal={currentMonthGoal ? currentMonthGoal : {}} key="2" />
+          <Goal isDay goal={currentDayGoal ? currentDayGoal : {}} key="3" />
+        </ScrollView>
+        <Card style={{ top: Styles.pmTop, ...styles.ampmSection }}>
+          <Text style={styles.ampmText}>PM</Text>
+        </Card>
+        <IconButton
+          style={styles.settingsButton}
+          icon="settings"
+          color={Colors.primary}
+          size={20}
+          onPress={editProfileHandler}
+        />
+        <Text style={styles.detailText}>{detailText}</Text>
+      </View>
+    </>
   );
 };
 
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
     marginRight: 90,
     borderRadius: 5,
   },
-  ringContainer: { position: 'absolute', top: 10, right: 15 },
+  ringContainer: { position: 'absolute', top: 25, right: Styles.homeMargin },
   scrollView: {
     height: Styles.homeMargin + Styles.goalHeight + Styles.homeMargin,
   },
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
   settingsButton: {
     position: 'absolute',
     top: 7,
-    left: 6,
+    right: 6,
     zIndex: 100,
   },
   detailText: {

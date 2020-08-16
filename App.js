@@ -11,14 +11,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
 import 'firebase/database';
+import GlobalContext from './context/GlobalState';
 import env from './env.js';
 import AppNavigator from './navigation/AppNavigator';
 import checkExpiredToken from './store/middlewares/checkExpiredToken';
 import authReducer from './store/reducers/auth';
 import goalsReducer from './store/reducers/goals';
 import profilesReducer from './store/reducers/profiles';
-
-import GlobalContext from './context/GlobalState';
 
 //Combines all the reducers which manages our redux state. This is where we get our current state from in the child screens.
 const rootReducer = combineReducers({

@@ -12,12 +12,12 @@ export const defaultNavOptions = {
   },
   headerTitleStyle: {
     fontFamily: Styles.defaultFontFamily,
-    fontSize: 25,
+    fontSize: 15,
   },
   headerBackTitleStyle: {
     fontFamily: 'roboto-regular',
   },
-  headerTintColor: Colors.primaryAccent,
+  headerTintColor: Colors.primary,
 };
 
 export const defaultMainPageOptions = (navData) => {

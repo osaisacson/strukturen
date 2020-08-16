@@ -12,9 +12,9 @@ const Rings = () => {
   ];
 
   const activityConfig = {
-    width: 130,
-    height: 130,
-    ringSize: 10,
+    width: 100,
+    height: 100,
+    ringSize: 6,
   };
 
   return (

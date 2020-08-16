@@ -1,5 +1,5 @@
 const homeMargin = 15;
-const goalHeight = 115;
+const goalHeight = 105;
 const meHeight = goalHeight + goalHeight + homeMargin;
 
 export default {
